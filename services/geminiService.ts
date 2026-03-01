@@ -90,12 +90,12 @@ export const findCompanyIntel = async (
       model: 'gemini-3-flash-preview',
       contents: `HEDEF: "${name}" (${website || 'Web sitesi aranmalı'}) 
       BAĞLAM: ${senderContext}
-      GÖREV: Şirketin kurumsal e-postasını bul. Varsa şirketin LinkedIn, Instagram ve Twitter profillerini tespit et. Bu şirkete özel, etkileyici bir satış teklifi e-postası hazırla.
+      GÖREV: Şirketin kurumsal emailsını bul. Varsa şirketin LinkedIn, Instagram ve Twitter profillerini tespit et. Bu şirkete özel, etkileyici bir satış teklifi emailsı hazırla.
       
       ÖNEMLİ TALİMATLAR:
-      1. E-posta taslağı kesinlikle "Normal Cümle Düzeni" (Sentence Case) ile yazılmalıdır. Sadece cümle başları ve özel isimler büyük harfle başlamalıdır. Kesinlikle TAMAMI BÜYÜK HARF kullanma.
+      1. Email taslağı kesinlikle "Normal Cümle Düzeni" (Sentence Case) ile yazılmalıdır. Sadece cümle başları ve özel isimler büyük harfle başlamalıdır. Kesinlikle TAMAMI BÜYÜK HARF kullanma.
       2. Metin mutlaka paragraflara bölünmüş, giriş, gelişme ve sonuç bölümleri olan profesyonel bir yapıda olmalıdır.
-      3. Teklif için ilgi çekici ve profesyonel bir "E-posta Başlığı" (Subject) oluştur.
+      3. Teklif için ilgi çekici ve profesyonel bir "Email Başlığı" (Subject) oluştur.
       4. Sosyal medya linklerini (linkedin, instagram, twitter) web sitesinden veya arama motorlarından doğrula.`,
       config: { 
         tools: [{ googleSearch: {} }],

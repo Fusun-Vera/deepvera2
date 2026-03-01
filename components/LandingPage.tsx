@@ -64,7 +64,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onToggleAssista
 
   const faqs = isTr ? [
     { q: 'DeepVera nasıl çalışır?', a: 'DeepVera yapay zeka motoruyla hedef sektor, sehir ve ulke seçtiginizde 250 milyon firma veritabanirindan ilgili firmalari tarar, iletisim bilgileri ve karar vericileri bulur; otonom ajanlar aracılıgıyla sizin yerinize ilk teması kurar.' },
-    { q: 'Token sistemi nasıl işler?', a: 'Her firma analizi 1 DV Token tutar. Yeni uyelere 100 ucretsiz token verilir. Daha fazlası icin Basşangic (100), Profesyonel (500) veya Kurumsal (1000) paket satin alabilirsiniz.' },
+    { q: 'Token sistemi nasıl işler?', a: 'Her firma analizi 1 DV Token tutar. Yeni uyelere 100 ucretsiz token verilir. Daha fazlası icin Basşangic (100), Professional (500) veya Enterprise (1000) paket satin alabilirsiniz.' },
     { q: 'Hangi sektorlerde kullanabilirim?', a: 'Restoran, sigorta, lojistik, saglik, HOREKA, sanayi, danismanlik, yazilim, otomotiv, giyim, guzellik ve daha pek cok sektorde kullanabilirsiniz. Sisteme ozel sektor terimi de girebilirsiniz.' },
     { q: 'Gmail entegrasyonu zorunlu mu?', a: "Hayir. Gmail baglamadan da firma analizi yapabilir, verileri Excel'e aktarabilirsiniz. Gmail sadece otonom email gonderimi için gereklidir." },
     { q: 'Verilerim guvenli mi?', a: 'Evet. Kart bilgileriniz platformumuzda saklanmaz; odeme PayTR altyapisindan gecmektedir. Kisisel verileriniz KVKK kapsaminida islenmekte ve uc taraflarla paylasi lmamaktadir.' },

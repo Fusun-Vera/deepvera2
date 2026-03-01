@@ -27,7 +27,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
         return users;
       }
     } catch (e) {
-      console.error("DB Okuma Hatası", e);
+      console.error("DB Okuma Errorsı", e);
     }
     return [];
   };
@@ -131,10 +131,10 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
         const user = currentDB.find((u: User) => u.username.toLowerCase() === inputUser);
         
         if (!user) {
-          setErrorMessage(`"${inputUser}" adında bir kayıt bulunamadı!`);
+          setErrorMessage(`"${inputUser}" adında bir kayıt not found!`);
           setShowDebug(true);
         } else if (user.password !== inputPass) {
-          setErrorMessage("Kullanıcı doğru ancak şifre hatalı!");
+          setErrorMessage("Kullanıcı doğru ancak password hatalı!");
           setShowDebug(true);
         } else {
           onLogin(user);
@@ -159,7 +159,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
            
            <div className="flex gap-2 bg-slate-100 p-1.5 rounded-2xl w-full max-w-[240px] mx-auto">
               <button onClick={() => setMode('login')} className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${mode === 'login' ? 'bg-white shadow-md text-blue-600' : 'text-slate-400'}`}>Giriş</button>
-              <button onClick={() => setMode('signup')} className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${mode === 'signup' ? 'bg-white shadow-md text-blue-600' : 'text-slate-400'}`}>Kayıt Ol</button>
+              <button onClick={() => setMode('signup')} className={`flex-1 py-2.5 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${mode === 'signup' ? 'bg-white shadow-md text-blue-600' : 'text-slate-400'}`}>Register</button>
            </div>
         </div>
 
@@ -172,7 +172,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
                     <input type="text" name="username" required value={formData.username} onChange={handleInputChange} className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-bold outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all" placeholder="Örn: aimusic" />
                  </div>
                  <div className="space-y-1.5">
-                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-3">Şifre</label>
+                    <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-3">Password</label>
                     <input type="password" name="password" required value={formData.password} onChange={handleInputChange} className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-bold outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50 transition-all" placeholder="••••••••" />
                  </div>
               </div>
@@ -188,7 +188,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
                     </div>
                     <div className="grid grid-cols-2 gap-3">
                        <input type="text" name="username" placeholder="Giriş Adı" required value={formData.username} onChange={handleInputChange} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold outline-none" />
-                       <input type="password" name="password" placeholder="Şifre" required value={formData.password} onChange={handleInputChange} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold outline-none" />
+                       <input type="password" name="password" placeholder="Password" required value={formData.password} onChange={handleInputChange} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold outline-none" />
                     </div>
                     <input type="text" name="companyName" placeholder="Şirket Tam Adı" required value={formData.companyName} onChange={handleInputChange} className="w-full p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold outline-none" />
                     <div className="grid grid-cols-2 gap-3">
@@ -208,12 +208,12 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
             )}
 
             <button type="submit" disabled={loading} className="w-full py-5 bg-slate-900 text-white rounded-[1.5rem] font-black text-xs uppercase tracking-[0.2em] shadow-2xl hover:bg-blue-600 transition-all flex items-center justify-center gap-3 active:scale-95">
-              {loading ? <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div> : mode === 'login' ? 'Sisteme Güvenli Giriş' : 'Kaydı Tamamla ve Başlat'}
+              {loading ? <div className="w-4 h-4 border-2 border-white/20 border-t-white rounded-full animate-spin"></div> : mode === 'login' ? 'Sisteme Güvenli Giriş' : 'Kaydı OKla ve Başlat'}
             </button>
 
             <div className="flex justify-between items-center px-4">
                <button type="button" onClick={onCancel} className="text-[9px] font-black text-slate-300 uppercase tracking-widest hover:text-red-500 transition-colors">← Geri Dön</button>
-               <button type="button" onClick={() => { setShowDebug(!showDebug); syncLocalUsers(); }} className="text-[9px] font-black text-blue-600 uppercase tracking-widest hover:text-slate-900 transition-all underline underline-offset-4">Giriş Yardımı? (Şifre Hatırlatıcı)</button>
+               <button type="button" onClick={() => { setShowDebug(!showDebug); syncLocalUsers(); }} className="text-[9px] font-black text-blue-600 uppercase tracking-widest hover:text-slate-900 transition-all underline underline-offset-4">Giriş Yardımı? (Password Hatırlatıcı)</button>
             </div>
           </form>
 
@@ -224,7 +224,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
                   <button onClick={() => setShowDebug(false)} className="text-white/20 hover:text-white text-xl">&times;</button>
                </div>
                {registeredUsers.length === 0 ? (
-                 <p className="text-[9px] text-slate-500 font-bold uppercase text-center py-4">Sistemde henüz bir yerel kayıt bulunamadı.</p>
+                 <p className="text-[9px] text-slate-500 font-bold uppercase text-center py-4">Sistemde henüz bir yerel kayıt not found.</p>
                ) : (
                  <div className="space-y-4 max-h-[250px] overflow-y-auto no-scrollbar">
                     {registeredUsers.map((u, i) => (
@@ -235,7 +235,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel }) => {
                          </div>
                          <div className="text-right flex flex-col gap-1">
                             <div className="flex items-center gap-2">
-                               <span className="text-[8px] font-black text-slate-500 uppercase">Şifre:</span>
+                               <span className="text-[8px] font-black text-slate-500 uppercase">Password:</span>
                                <span className="text-[9px] font-black text-white bg-blue-600 px-2 py-0.5 rounded-lg">{u.password}</span>
                             </div>
                             <span className="text-[7px] text-emerald-500 font-black uppercase">Bakiye: {u.tokenBalance}</span>

@@ -72,7 +72,7 @@ const App: React.FC = () => {
   // TÜRKÇE KARAKTER DESTEKLİ EXCEL EXPORT (BOM EKLEYEREK)
   const exportToExcel = () => {
     if (participants.length === 0) return;
-    const headers = ["Firma Adı", "Web Sitesi", "E-Posta", "Telefon", "Sektör", "Konum", "LinkedIn", "Instagram", "Twitter", "Buzkıran", "E-Posta Başlığı", "E-Posta Taslağı"];
+    const headers = ["Firma Adı", "Website", "E-Posta", "Phone", "Sektör", "Konum", "LinkedIn", "Instagram", "Twitter", "Buzkıran", "E-Posta Başlığı", "E-Posta Taslağı"];
     const rows = participants.map(p => [
       p.name,
       p.website,
@@ -135,7 +135,7 @@ const App: React.FC = () => {
       const rawResults = await extractLeadList(activeQuery, selectedSector, selectedCity, participants.map(p => p.name), (msg) => addLog(msg));
       
       if (!rawResults || rawResults.length === 0) { 
-        addLog("Sonuç bulunamadı.");
+        addLog("Sonuç not found.");
         setStatus(AppStatus.IDLE); 
         return; 
       }
@@ -175,7 +175,7 @@ const App: React.FC = () => {
       }
     } catch (err) { 
       console.error(err); 
-      addLog("Hata oluştu.");
+      addLog("Error oluştu.");
     }
     setStatus(AppStatus.IDLE);
   };
@@ -254,7 +254,7 @@ const App: React.FC = () => {
                   <div className="flex gap-1">
                     <div className="w-1.5 h-1.5 bg-white rounded-full animate-ping"></div>
                   </div>
-                  <span className="text-[9px] font-black text-white uppercase tracking-[0.3em] drop-shadow-md">Global İstihbarat Aktif</span>
+                  <span className="text-[9px] font-black text-white uppercase tracking-[0.3em] drop-shadow-md">Global İstihbarat Active</span>
                 </div>
                 <div className="flex-1 max-w-lg mx-8 h-1 bg-white/30 rounded-full overflow-hidden">
                   <div className="h-full bg-white shadow-[0_0_8px_white] transition-all duration-500" style={{ width: `${(participants.filter(p => p.status === 'completed').length / leadLimit) * 100}%` }}></div>

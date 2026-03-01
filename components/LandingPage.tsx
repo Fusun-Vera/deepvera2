@@ -39,10 +39,10 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
           <div className="flex items-center gap-10">
              <div className="hidden lg:flex gap-8 text-[10px] font-black uppercase tracking-widest text-slate-400">
                 <a href="#how-it-works" className="hover:text-blue-600 transition-colors">Süreç</a>
-                <a href="#features" className="hover:text-blue-600 transition-colors">Yetenekler</a>
-                <a href="#sectors" className="hover:text-blue-600 transition-colors">Sektörler</a>
+                <a href="#features" className="hover:text-blue-600 transition-colors">Capabilities</a>
+                <a href="#sectors" className="hover:text-blue-600 transition-colors">Industries</a>
              </div>
-             <button onClick={onGetStarted} className="px-8 py-3 bg-blue-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-slate-900 transition-all shadow-xl">Giriş Yap</button>
+             <button onClick={onGetStarted} className="px-8 py-3 bg-blue-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-slate-900 transition-all shadow-xl">Sign In</button>
           </div>
         </div>
       </nav>
@@ -57,12 +57,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             </div>
             
             <h1 className="text-6xl lg:text-[110px] font-black uppercase leading-[0.9] tracking-tighter mb-10 text-slate-900">
-              Manuel Lead Aramayı <br/>
+              Manuel Lead Searchyı <br/>
               <span className="text-blue-600 italic">Emekli Edin.</span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-slate-500 font-medium leading-relaxed max-w-3xl mx-auto mb-16">
-              DeepVera, hedefinizi tek bir URL veya sektör ile belirlediğinizde; otonom ajanlarıyla web'i tarar, karar vericileri bulur ve onlara özel reddedilemez teklifler hazırlar.
+              When you define your target with a single URL or industry, DeepVera autonomously scans the web, identifies decision-makers, and prepares personalised, irresistible proposals for them.
             </p>
             
             <div className="flex flex-col sm:flex-row justify-center gap-6 w-full max-w-md mx-auto">
@@ -70,7 +70,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
                   Sistemi Başlat
                </button>
                <button onClick={() => document.getElementById('how-it-works')?.scrollIntoView({behavior: 'smooth'})} className="flex-1 px-12 py-6 bg-white border border-slate-200 text-slate-900 rounded-2xl font-black text-xs uppercase tracking-[0.3em] hover:bg-slate-50 transition-all">
-                  Nasıl Çalışır?
+                  How Does It Work?
                </button>
             </div>
           </div>
@@ -82,7 +82,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
          <div className="flex animate-marquee whitespace-nowrap gap-20 items-center">
             {[1,2,3,4,5].map(i => (
               <div key={i} className="flex items-center gap-10">
-                <span className="text-white/20 font-black text-3xl uppercase tracking-tighter">250M+ Kurumsal Veri</span>
+                <span className="text-white/20 font-black text-3xl uppercase tracking-tighter">250M+ Enterprise Veri</span>
                 <span className="text-blue-500 font-black text-3xl uppercase tracking-tighter">Real-Time Search</span>
                 <span className="text-white/20 font-black text-3xl uppercase tracking-tighter">AI Cold Outreach</span>
                 <span className="text-emerald-500 font-black text-3xl uppercase tracking-tighter">98% Email Doğrulama</span>
@@ -104,8 +104,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
              
              {[
                { step: "01", title: "Hedef Tanımı", desc: "Bir fuar sitesi linki yapıştırın veya 'Antalya'daki Oteller' gibi bir komut verin.", icon: "🎯" },
-               { step: "02", title: "Derin Tarama", desc: "AI ajanlarımız web sitelerini, sosyal ağları ve dijital ayak izlerini anında tarar.", icon: "🔍" },
-               { step: "03", title: "İstihbarat", desc: "Karar vericinin ismi, e-postası ve firmanın rakiplerine kadar her şey listelenir.", icon: "🧠" },
+               { step: "02", title: "Derin Tsearch", desc: "AI ajanlarımız web sitelerini, sosyal ağları ve dijital ayak izlerini anında tarar.", icon: "🔍" },
+               { step: "03", title: "İstihbarat", desc: "Karar vericinin ismi, emailsı ve firmanın rakiplerine kadar her şey listelenir.", icon: "🧠" },
                { step: "04", title: "Özel Teklif", desc: "AI, sizin firmanızla hedef firma arasında bağ kuran 1:1 özel teklif yazar.", icon: "✉️" }
              ].map((item, i) => (
                <div key={i} className="relative z-10 p-10 bg-white border border-slate-100 rounded-[3rem] shadow-xl hover:border-blue-500 transition-all group">
@@ -125,8 +125,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div className="space-y-10">
                  <div className="space-y-4">
-                    <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em]">Derin Yetenekler</span>
-                    <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-none">Sadece Bir Liste Değil, <br/><span className="text-blue-600">Satış Silahı.</span></h2>
+                    <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em]">Derin Capabilities</span>
+                    <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter leading-none">Sadece Bir Liste Değil, <br/><span className="text-blue-600">Satış Deleteahı.</span></h2>
                  </div>
                  
                  <div className="space-y-8">
@@ -240,14 +240,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
       {/* Industry Solutions */}
       <section id="sectors" className="py-32 bg-slate-50/50">
         <div className="container mx-auto px-6 lg:px-12 text-center">
-          <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4 block">Sektörel Uygulamalar</span>
+          <span className="text-[11px] font-black text-blue-600 uppercase tracking-[0.4em] mb-4 block">Industryel Uygulamalar</span>
           <h2 className="text-4xl lg:text-6xl font-black uppercase tracking-tighter mb-24">Kimler İçin <span className="text-blue-600">İdeal?</span></h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
              {[
                { title: "B2B Hizmet & Yazılım", desc: "Potansiyel kurumsal müşterileri bulup yazılım veya danışmanlık hizmetlerinizi pazarlayın.", icon: "💎" },
                { title: "İhracatçılar", desc: "Hedef ülkedeki ithalatçıları, distribütörleri ve perakende zincirlerini saniyeler içinde haritalayın.", icon: "🌍" },
-               { title: "Fuar Katılımcıları", desc: "Fuara katılan firmaları listeleyin ve fuar öncesi/sonrası özel randevu e-postaları kurgulayın.", icon: "🎪" }
+               { title: "Fuar Katılımcıları", desc: "Fuara katılan firmaları listeleyin ve fuar öncesi/sonrası özel randevu emailları kurgulayın.", icon: "🎪" }
              ].map((item, i) => (
                <div key={i} className="p-12 bg-white rounded-[3.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all hover:-translate-y-2">
                   <div className="text-5xl mb-10">{item.icon}</div>
@@ -282,8 +282,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted }) => {
             </div>
             <div className="flex gap-10 text-[10px] font-black text-slate-400 uppercase tracking-widest">
                <a href="#" className="hover:text-blue-600">Kullanım Şartları</a>
-               <a href="#" className="hover:text-blue-600">Gizlilik Politikası</a>
-               <a href="#" className="hover:text-blue-600">İletişim</a>
+               <a href="#" className="hover:text-blue-600">Privacy Policy</a>
+               <a href="#" className="hover:text-blue-600">Contact</a>
             </div>
             <p className="text-[10px] font-black text-slate-300 uppercase tracking-[0.3em]">© 2025 DEEPVERA INTEL SYSTEM</p>
          </div>

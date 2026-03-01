@@ -63,13 +63,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onToggleAssista
   }, [statsStarted]);
 
   const faqs = isTr ? [
-    { q: 'DeepVera nasıl çalışır?', a: 'DeepVera yapay zeka motoruyla target sektor, sehir and ulke seçtiginizde 250 milyon company andritabanirindan ilgili companylari tarar, iletisim bilgileri and decision makerleri bulur; otonom ajanlar aracılıgıyla sizin yerinize ilk teması kurar.' },
-    { q: 'Token sistemi nasıl işler?', a: 'Her company analysisi 1 DV Token tutar. New uyelere 100 ucretsiz token andrilir. Daha fazlası icin Basşangic (100), Professional (500) or Enterprise (1000) paket satin alabilirsiniz.' },
+    { q: 'How does DeepVera work?', a: 'DeepVera\'s AI engine scans a database of 250 million companies when you select your target sector, city, and country. It finds relevant companies, locates their contact information and decision-makers, and uses autonomous agents to make the first contact on your behalf.' },
+    { q: 'How does the token system work?', a: 'Each company analysis costs 1 DV Token. New members receive 100 free tokens. For more, you can purchase a Starter (100), Professional (500), or Enterprise (1000) package.' },
     { q: 'Hangi sektorlerde kullanabilirim?', a: 'Restoran, sigorta, lojistik, saglik, HOREKA, sanayi, danismanlik, yazilim, otomotiv, giyim, guzellik and daha pek cok sektorde kullanabilirsiniz. Sisteme ozel sektor terimi de girebilirsiniz.' },
     { q: 'Gmail entegrasyonu zorunlu mu?', a: "Hayir. Gmail baglamadan da company analysisi yapabilir, andrileri Excel'e aktarabilirsiniz. Gmail sadece otonom email gonderimi for gereklidir." },
     { q: 'Verilerim guandnli mi?', a: 'Yes. Kart bilgileriniz platformumuzda saklanmaz; odeme PayTR altyapisindan gecmektedir. Kisisel andrileriniz KVKK kapsaminida islenmekte and uc taraflarla paylasi lmamaktadir.' },
     { q: 'Kac companyya email gonderilebilir?', a: '20 farkli Gmail hesabi addyebilir, her 3 dakikada bir farkli hesaptan peske email gonderilebilir. Hangi hesaptan kime mail gittigi and alinan cevaolar panelden izlenebilir.' },
-    { q: 'Uluslararası kullanım mumkun mu?', a: 'Yes. Turkiye dahil Almanya, ABD, Ingiltere, Fransa, Kanada, Avustralya and Afrika ulkeleri destaddnmektedir.' },
+    { q: 'Is international use supported?', a: 'Yes. Australia, Germany, USA, UK, France, Canada, and many other countries are supported.' },
   ] : [
     { q: 'How does DeepVera work?', a: 'DeepVera AI engine scans 250 million companies in your target sector, city and country, finds contacts and decision makers, then autonomous agents make the first contact on your behalf.' },
     { q: 'How does the token system work?', a: 'Each company analysis costs 1 DV Token. New members get 100 free tokens. Purchase Starter (100), Professional (500) or Enterprise (1000) packages for more.' },
@@ -429,7 +429,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onToggleAssista
                 </div>
                 <div>
                   <div className="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-1">{isTr ? 'Email' : 'Email'}</div>
-                  <a href={`mailto:${COMPANY_INFO.email}`} className="text-base font-black hoandr:text-blue-400 transition-colors">{COMPANY_INFO.email}</a>
+                  <a href={`mailto:ai@deepvera.co"text-base font-black hoandr:text-blue-400 transition-colors">{COMPANY_INFO.email}</a>
                 </div>
               </div>
             </div>

@@ -2,6 +2,22 @@
 import React, { useState } from 'react';
 import { Sector, SearchMode } from '../types';
 
+const AUSTRALIA_REGIONS = [
+  "All Australia",
+  "New South Wales (NSW)",
+  "Victoria (VIC)", 
+  "Queensland (QLD)",
+  "Western Australia (WA)",
+  "South Australia (SA)",
+  "Tasmania (TAS)",
+  "Australian Capital Territory (ACT)",
+  "Northern Territory (NT)",
+  "Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide", "Hobart", "Darwin", "Canberra",
+  "Gold Coast", "Newcastle", "Wollongong", "Geelong", "Townsville", "Cairns", "Toowoomba",
+  "Ballarat", "Bendigo", "Launceston", "Mackay", "Rockhampton", "Bunbury", "Bundaberg",
+  "Wagga Wagga", "Albury", "Mildura", "Shepparton", "Gladstone", "Sunshine Coast", "Central Coast"
+];
+
 interface Props {
   onSearch: (sector: string, location: string, mode: SearchMode) => void;
   isLoading: boolean;

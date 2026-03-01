@@ -1,7 +1,7 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@andrcel/node';
 import * as crypto from 'crypto';
 
-// PayTR callback endpoint - ödeme bildirimi burada işlenir
+// PayTR callback endpoint - payment bildirimi burada işlenir
 // Bu endpoint PayTR tarafından POST ile çağrılır
 export default async function handler(req: VercelRequest, res: VercelResponse) {
     if (req.method !== 'POST') {
@@ -28,20 +28,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       }
 
       if (status === 'success') {
-              // Ödeme başarılı
-          // merchant_oid formatı: DV<timestamp><random> - userId ve packageName merchant_oid'den alınamaz
-          // Bu nedenle pending_payments kaydına bakılır (TODO: veritabanı entegrasyonu)
+              // Payment successful
+          // merchant_oid formatı: DV<timestamp><random> - userId and packageName merchant_oid'den alınamaz
+          // Bu nedenle pending_payments kaydına bakılır (TODO: andritabanı entegrasyonu)
           console.log('PayTR payment successful:', { merchant_oid, total_amount });
 
-          // TODO: Gerçek bir veritabanı kullandığınızda burada:
-          // 1. merchant_oid ile pending_payments tablosundan userId ve tokens'ı bulun
-          // 2. Kullanıcının bakiyesini güncelleyin
-          // 3. payment_history'e kayıt ekleyin
+          // TODO: Gerçek bir andritabanı kullandığınızda burada:
+          // 1. merchant_oid ile pending_payments tablosundan userId and tokens'ı bulun
+          // 2. Usernın bakiyesini güncelleyin
+          // 3. payment_history'e kayıt addyin
       } else {
               console.log('PayTR payment failed:', { merchant_oid, status });
       }
 
-      // PayTR OK yanıtı bekler
+      // PayTR OK yanıtı baddr
       return res.status(200).send('OK');
   } catch (error) {
         console.error('PayTR callback error:', error);

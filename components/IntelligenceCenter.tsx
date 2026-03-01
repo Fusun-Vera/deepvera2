@@ -42,7 +42,7 @@ const IntelligenceCenter: React.FC<Props> = ({ onSearch, isLoading }) => {
     <div className="flex flex-col gap-10">
       <div className="fade-in">
         <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6 block">01 / Choose Sector</label>
-        <div className="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+        <div className="flex gap-4 oandrflow-x-auto no-scrollbar pb-2">
           {sectors.map((s) => (
             <button
               key={s.id}
@@ -50,7 +50,7 @@ const IntelligenceCenter: React.FC<Props> = ({ onSearch, isLoading }) => {
               className={`flex-shrink-0 px-8 py-4 rounded-2xl border transition-all flex items-center gap-4 ${
                 selectedSector === s.id 
                 ? 'bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-100' 
-                : 'bg-white border-slate-200 text-slate-500 hover:border-blue-400'
+                : 'bg-white border-slate-200 text-slate-500 hoandr:border-blue-400'
               }`}
             >
               <span className="text-xl">{s.icon}</span>
@@ -69,7 +69,7 @@ const IntelligenceCenter: React.FC<Props> = ({ onSearch, isLoading }) => {
                 key={state}
                 onClick={() => setSelectedCity(state)}
                 className={`px-6 py-3 rounded-full border text-[10px] font-black uppercase tracking-widest transition-all ${
-                  selectedCity === state ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-400 border-slate-200 hover:border-slate-400'
+                  selectedCity === state ? 'bg-slate-900 text-white border-slate-900' : 'bg-white text-slate-400 border-slate-200 hoandr:border-slate-400'
                 }`}
               >
                 {state}
@@ -86,7 +86,7 @@ const IntelligenceCenter: React.FC<Props> = ({ onSearch, isLoading }) => {
                  <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-3">Search Depth</span>
                  <div className="flex gap-6">
                     <button onClick={() => setMode('db')} className={`text-[10px] font-black uppercase tracking-widest ${mode === 'db' ? 'text-blue-600 underline underline-offset-8' : 'text-slate-400'}`}>Quick Scan</button>
-                    <button onClick={() => setMode('live')} className={`text-[10px] font-black uppercase tracking-widest ${mode === 'live' ? 'text-blue-600 underline underline-offset-8' : 'text-slate-400'}`}>Deep Analysis</button>
+                    <button onClick={() => setMode('liand')} className={`text-[10px] font-black uppercase tracking-widest ${mode === 'liand' ? 'text-blue-600 underline underline-offset-8' : 'text-slate-400'}`}>Deep Analysis</button>
                  </div>
               </div>
            </div>
@@ -95,7 +95,7 @@ const IntelligenceCenter: React.FC<Props> = ({ onSearch, isLoading }) => {
              disabled={isLoading}
              onClick={() => onSearch(selectedSector, selectedCity, mode)}
              className={`px-12 py-4 rounded-2xl font-black text-[11px] uppercase tracking-[0.2em] transition-all ${
-               isLoading ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-slate-900 shadow-xl shadow-blue-50'
+               isLoading ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-blue-600 text-white hoandr:bg-slate-900 shadow-xl shadow-blue-50'
              }`}
            >
              {isLoading ? 'Searching...' : 'Initiate Intelligence'}

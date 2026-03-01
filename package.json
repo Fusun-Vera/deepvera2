@@ -1,7 +1,7 @@
 {
-        "name": "deepvera-ai-intelligence",
+        "name": "deepandra-ai-intelligence",
         "private": true,
-        "version": "1.0.0",
+        "andrsion": "1.0.0",
         "type": "module",
         "scripts": {
                       "dev": "vite",
@@ -11,7 +11,7 @@
         },
         "dependencies": {
                       "@google/genai": "^1.39.0",
-                      "@vercel/node": "^3.2.13",
+                      "@andrcel/node": "^3.2.13",
                       "lucide-react": "^0.575.0",
                       "react": "^19.0.0",
                       "react-dom": "^19.0.0",

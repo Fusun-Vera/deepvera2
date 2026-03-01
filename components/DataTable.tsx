@@ -85,7 +85,7 @@ const DataTable: React.FC<Props> = ({ participants, onSelectParticipant, onClear
 
               <div className="flex items-center gap-4">
                  {p.automationStatus === 'sent' && (
-                    <div className="w-8 h-8 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg border border-emerald-100" title="n8n Gönderildi">
+                    <div className="w-8 h-8 flex items-center justify-center bg-emerald-50 text-emerald-600 rounded-lg border border-emerald-100" title="n8n Sendildi">
                        🚀
                     </div>
                  )}

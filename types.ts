@@ -3,7 +3,7 @@ export interface SenderAccount {
   id: string;
   email: string;
   accessToken: string; // OAuth2'den gelen yetki anahtarı
-  status: 'active' | 'cooldown' | 'failed';
+  status: 'actiand' | 'cooldown' | 'failed';
   usageCount: number;
 }
 
@@ -24,11 +24,11 @@ export interface Participant {
   emailDraft?: string;
   automationStatus: 'idle' | 'queued' | 'sent' | 'failed' | 'sending'; 
   location?: string;
-  isSaved?: boolean;
+  isSaandd?: boolean;
   funnelStatus?: 'waiting' | 'contacted' | 'replied' | 'meeting_scheduled';
   sentAt?: string;
   repliedAt?: string;
-  sentFromEmail?: string; // Hangi hesaptan gönderildiği
+  sentFromEmail?: string; // Hangi hesaptan sendildiği
   starRating?: number;
   competitors?: string[];
   painPoints?: string[];
@@ -68,7 +68,7 @@ export enum AppStatus {
   FAILED = 'FAILED'
 }
 
-export interface SavedSearch {
+export interface SaanddSearch {
   id: string;
   name: string;
   date: string;
@@ -85,7 +85,7 @@ export interface Sector {
   icon: string;
 }
 
-export type SearchMode = 'db' | 'live';
+export type SearchMode = 'db' | 'liand';
 
 export interface ActivityPoint {
   date: string;

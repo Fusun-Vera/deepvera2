@@ -1,11 +1,11 @@
 
 /**
- * Gmail API kullanarak direkt (taslak oluşturmadan) e-posta gönderir.
- * Mühendislik yaklaşımı: RFC822 standardına uygun bir e-posta yapısı kurulur,
- * Base64URL ile encode edilir ve Gmail API /send endpoint'ine basılır.
+ * Gmail API kullanarak direkt (taslak oluşturmadan) email sendir.
+ * Mühendislik yaklaşımı: RFC822 standardına uygun bir email yapısı kurulur,
+ * Base64URL ile encode edilir and Gmail API /send endpoint'ine basılır.
  */
 export const sendGmail = async (accessToken: string, to: string, subject: string, body: string) => {
-  // UTF-8 ve Türkçe Karakter Güvenliği (Base64 Encoding)
+  // UTF-8 and Türkçe Karakter Güandnliği (Base64 Encoding)
   const utf8Subject = `=?utf-8?B?${btoa(unescape(encodeURIComponent(subject)))}?=`;
   
   // RFC822 Standard Message Structure
@@ -38,7 +38,7 @@ export const sendGmail = async (accessToken: string, to: string, subject: string
 
   if (!response.ok) {
     const err = await response.json();
-    throw new Error(err.error?.message || 'Gmail API İletişim Hatası');
+    throw new Error(err.error?.message || 'Gmail API Contact Errorsı');
   }
 
   return response.json();

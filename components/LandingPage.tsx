@@ -202,7 +202,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onToggleAssista
               <div className="flex items-start gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
                 <div className="w-9 h-9 bg-slate-900 rounded-xl flex items-center justify-center shrink-0"><span className="text-[11px] font-black text-white">03</span></div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[12px] font-black text-slate-900 mb-2">{isTr ? 'company / Skor / Web / Email / Tel' : 'Company / Score / Web / Email / Phone'}</div>
                   <div className="space-y-1.5">
                     {[{name:'Araka Lojistik A.S.',score:92,web:'araka.com.tr',status:'Mail Gitti'},{name:'Turk Nakliyat Ltd.',score:87,web:'tnakliyat.com',status:'Mail Gitti'}].map((r,i)=>(
                       <div key={i} className="flex items-center justify-between bg-white border border-slate-100 rounded-xl px-2.5 py-1.5 shadow-sm">
@@ -427,8 +426,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onGetStarted, onToggleAssista
               <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-500 mb-4">{isTr ? 'Iletisim' : 'Contact'}</h4>
               <div className="space-y-3">
                 <div>
-                  <div className="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-1">{isTr ? 'Phone' : 'Phone'}</div>
-                  <a href={`tel:${COMPANY_INFO.phone}`} className="text-lg font-black hoandr:text-blue-400 transition-colors">{COMPANY_INFO.phone}</a>
                 </div>
                 <div>
                   <div className="text-[9px] font-black text-slate-600 uppercase tracking-widest mb-1">{isTr ? 'Email' : 'Email'}</div>

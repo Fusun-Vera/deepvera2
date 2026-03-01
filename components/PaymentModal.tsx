@@ -73,7 +73,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, isPro, onClose, onSuccess, onUp
               onClick={() => onSuccess(selectedPkg.tokens)}
               className="w-full py-6 bg-blue-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-2xl shadow-blue-100 hover:bg-slate-900 transition-all"
             >
-              Ödeme Yap ve Tokenları Yükle
+              Payment Yap ve Tokenları Yükle
             </button>
           </div>
         ) : (
@@ -123,7 +123,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, isPro, onClose, onSuccess, onUp
           </div>
         )}
         
-        <p className="text-[8px] font-black text-slate-300 text-center uppercase tracking-widest mt-8 italic">Güvenli Altyapı • 1 Token = 1₺ Net Fiyatlandırma</p>
+        <p className="text-[8px] font-black text-slate-300 text-center uppercase tracking-widest mt-8 italic">Güvenli Altyapı • 1 Token = 1₺ Net Pricing</p>
       </div>
     </div>
   );

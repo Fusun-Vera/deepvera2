@@ -116,8 +116,8 @@ export const extractLeadList = async (
     if (advancedFilters.techStack) filterContext += ` Kullandığı teknolojiler: ${advancedFilters.techStack}.`;
   }
   const prompt = isUrl
-    ? `"${queryContext}" sitesindeki katilimci listesini cikar. Her firmanin TELEFON ve web sitesini tespit et. Limit: ${limit}.${filterContext} SADECE JSON dondur: {"leads":[{"name":"","website":"","phone":"","location":""}]}`
-    : `Google'da "${location} ${sector} firmalar" ara. GERCEK var olan firmalarin isimlerini bul. UYDURMA, PLACEHOLDER veya "Restoran 1", "Firma 2" gibi sahte isimler KESINLIKLE yazma. Sadece gercekten var olan firmalari listele. Bulamadiginda daha az firma dondur, asla sahte isim uretme. ${location} bolgesindeki "${sector}" sektorunden maksimum ${limit} gercek sirket. Atla: ${excludeNames.join(", ")}.${filterContext} SADECE JSON dondur: {"leads":[{"name":"","website":"","phone":"","location":""}]}`;
+    ? `Extract the participant list from the "${queryContext}" website. Identify the PHONE NUMBER and website of each company. Limit: ${limit}.${filterContext} Return ONLY JSON: {"leads":[{"name":"","website":"","phone":"","location":""}]}`
+    : `Search Google for "${location} ${sector} businesses Australia". Find the names of REAL existing businesses. NEVER invent, use PLACEHOLDERS, or generate fake names like "Restaurant 1" or "Business 2". Only list businesses that genuinely exist. If you cannot find enough, return fewer results rather than fabricating names. Maximum ${limit} real businesses in the "${sector}" sector within ${location}, Australia. Skip: ${excludeNames.join(", ")}.${filterContext} Return ONLY JSON: {"leads":[{"name":"","website":"","phone":"","location":""}]}`;
   const response = await ai.models.generateContent({
     model: GEMINI_MODEL,
     contents: prompt,

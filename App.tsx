@@ -64,7 +64,7 @@ const App: React.FC = () => {
   
   const [language, setLanguage] = useState<Language>(() => {
     const saved = localStorage.getItem('deepvera_lang') as Language;
-    return saved || 'tr';
+    return saved || 'en';
   });
 
   const [queryContext, setQueryContext] = useState('');

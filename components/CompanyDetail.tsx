@@ -205,7 +205,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       <button onClick={() => { setDraftContent(''); setSubject(''); updateParticipant && updateParticipant(participant.id, { emailDraft: '', emailSubject: '' }); }} className="h-9 px-3 bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-red-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center" title="Taslağı Temizle">
                         <Trash2 size={14} />
                       </button>
-                      <button onClick={() => copyToClipboard(draftContent || '', 'E-posta')} className="h-9 px-5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-slate-900 hover:to-slate-800 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-blue-200/50 dark:shadow-none">
+                      <button onClick={() => copyToClipboard(draftContent || '', 'Email')} className="h-9 px-5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-slate-900 hover:to-slate-800 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-blue-200/50 dark:shadow-none">
                         <span>KOPYALA</span>
                         <Copy size={13} />
                       </button>
@@ -219,7 +219,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       <div className="absolute -top-2.5 left-4 px-2 bg-white dark:bg-slate-800 text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] z-10">KONU BAŞLIĞI</div>
                       <div className="bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 overflow-hidden">
                         <div className="pl-4"><div className="w-2 h-2 rounded-full bg-blue-500"></div></div>
-                        <input type="text" value={subject} onChange={handleSubjectChange} placeholder="E-posta konu başlığı..." className="flex-1 h-11 bg-transparent border-none outline-none text-[14px] font-bold text-slate-900 dark:text-white px-0" />
+                        <input type="text" value={subject} onChange={handleSubjectChange} placeholder="Email konu başlığı..." className="flex-1 h-11 bg-transparent border-none outline-none text-[14px] font-bold text-slate-900 dark:text-white px-0" />
                       </div>
                     </div>
 
@@ -271,7 +271,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                     <div className="flex items-center gap-3 px-3 py-2.5 bg-emerald-50 dark:bg-emerald-900/10 rounded-xl border border-emerald-100 dark:border-emerald-900/20">
                       <span className="text-emerald-600 text-base">💡</span>
                       <p className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 leading-tight">
-                        Bu taslak, firmanın <span className="underline decoration-emerald-300">acı noktaları</span> ve <span className="underline decoration-emerald-300">pazar konumu</span> temel alınarak otonom üretilmiştir.
+                        Bu taslak, firmanın <span className="underline decoration-emerald-300">acı noktaları</span> ve <span className="underline decoration-emerald-300">pazar locationu</span> temel alınarak otonom üretilmiştir.
                       </p>
                     </div>
                   </div>
@@ -284,20 +284,20 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
 
                 {/* Contact Card */}
                 <div className="bg-white dark:bg-slate-800 p-4 sm:p-5 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
-                  <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">İletişim Kanalları</h3>
+                  <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Contact Kanalları</h3>
                   <div className="space-y-4">
                     <div>
                       <span className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest block mb-0.5">TELEFON</span>
                       <div className="flex items-center justify-between">
                         <span className="text-[14px] font-black text-slate-900 dark:text-white tabular-nums">{participant.phone || '—'}</span>
-                        {participant.phone && <button onClick={() => copyToClipboard(participant.phone, 'Telefon')} className="text-blue-500 text-sm ml-2 shrink-0">📋</button>}
+                        {participant.phone && <button onClick={() => copyToClipboard(participant.phone, 'Phone Number')} className="text-blue-500 text-sm ml-2 shrink-0">📋</button>}
                       </div>
                     </div>
                     <div>
                       <span className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest block mb-0.5">E-POSTA</span>
                       <div className="flex items-center justify-between">
                         <span className="text-[13px] font-bold text-slate-900 dark:text-white lowercase break-all">{participant.email || 'n/a'}</span>
-                        {participant.email && <button onClick={() => copyToClipboard(participant.email, 'E-posta')} className="text-blue-500 text-sm ml-2 shrink-0">📋</button>}
+                        {participant.email && <button onClick={() => copyToClipboard(participant.email, 'Email')} className="text-blue-500 text-sm ml-2 shrink-0">📋</button>}
                       </div>
                     </div>
                     <a href={participant.website} target="_blank" rel="noreferrer" className="w-full h-10 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-slate-900 transition-all shadow-md shadow-blue-100 dark:shadow-none">

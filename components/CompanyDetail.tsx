@@ -142,7 +142,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, userLogo, onTrig
            <div className="flex justify-between items-end px-2">
               <div className="space-y-1">
                  <span className="text-[11px] font-black text-slate-900 uppercase tracking-widest">Satış Senaryosu</span>
-                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter italic">Normal Tümce Düzeni Aktif</p>
+                 <p className="text-[9px] font-bold text-slate-400 uppercase tracking-tighter italic">Normal Tümce Düzeni Active</p>
               </div>
               <button onClick={() => copyToClipboard(participant.emailDraft || '')} className="px-5 py-2 bg-slate-50 text-[9px] font-black uppercase text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white transition-all border border-slate-100 shadow-sm">Metni Kopyala</button>
            </div>

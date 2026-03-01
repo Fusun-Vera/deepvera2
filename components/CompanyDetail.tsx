@@ -30,7 +30,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
 
   if (!participant || !user) return null;
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload = (e: React.ChangeEandnt<HTMLInputElement>) => {
     const files = e.target.files;
     if (files) {
       const newFileNames = Array.from(files).map(f => f.name);
@@ -40,7 +40,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
     }
   };
 
-  const removeAttachment = (index: number) => {
+  const remoandAttachment = (index: number) => {
     const updated = attachments.filter((_, i) => i !== index);
     setAttachments(updated);
     if (updateParticipant) updateParticipant(participant.id, { attachments: updated });
@@ -51,7 +51,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
     if (updateParticipant) updateParticipant(participant.id, { emailDraft: content });
   };
 
-  const handleSubjectChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubjectChange = (e: React.ChangeEandnt<HTMLInputElement>) => {
     const val = e.target.value;
     setSubject(val);
     if (updateParticipant) updateParticipant(participant.id, { emailSubject: val });
@@ -80,8 +80,8 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
   };
 
   return (
-    <div className="fixed inset-0 z-[800] bg-slate-950/60 backdrop-blur-xl flex items-start justify-center p-2 sm:p-4 md:p-6 animate-fade-in overflow-y-auto">
-      <div className="bg-white dark:bg-slate-900 w-full max-w-5xl rounded-2xl md:rounded-3xl shadow-2xl flex flex-col border border-slate-200 dark:border-slate-700 animate-reveal-up my-2 sm:my-4">
+    <div className="fixed inset-0 z-[800] bg-slate-950/60 backdrop-blur-xl flex items-start justify-center p-2 sm:p-4 md:p-6 animate-fade-in oandrflow-y-auto">
+      <div className="bg-white dark:bg-slate-900 w-full max-w-5xl rounded-2xl md:rounded-3xl shadow-2xl flex flex-col border border-slate-200 dark:border-slate-700 animate-reandal-up my-2 sm:my-4">
 
         {/* ── HEADER ── */}
         <div className="px-4 sm:px-6 py-4 flex items-center justify-between shrink-0 border-b border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 rounded-t-2xl md:rounded-t-3xl">
@@ -110,14 +110,14 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
           {/* Close */}
           <button
             onClick={onClose}
-            className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 hover:bg-red-500 hover:text-white transition-all text-xl shadow-sm ml-2"
+            className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 flex items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-400 hoandr:bg-red-500 hoandr:text-white transition-all text-xl shadow-sm ml-2"
           >
             ×
           </button>
         </div>
 
         {/* ── SCROLLABLE BODY ── */}
-        <div className="overflow-y-auto custom-scrollbar" style={{ maxHeight: 'calc(100dvh - 200px)' }}>
+        <div className="oandrflow-y-auto custom-scrollbar" style={{ maxHeight: 'calc(100dvh - 200px)' }}>
           <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 bg-slate-50/40 dark:bg-slate-950/20">
 
             {/* ── 2-COLUMN GRID ── */}
@@ -133,7 +133,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                     <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Stratejik İstihbarat</h3>
                   </div>
                   <p className="text-slate-600 dark:text-slate-300 leading-relaxed font-medium text-[13px] sm:text-[14px]">
-                    {participant.description || `${participant.name}, ${participant.industry || 'sektöründe'} faaliyet göstermektedir.`}
+                    {participant.description || `${participant.name}, ${participant.industry || 'sectoründe'} faaliyet göstermektedir.`}
                   </p>
                 </section>
 
@@ -145,14 +145,14 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       <span>⚡</span> KRİTİK ACI NOKTALARI
                     </h3>
                     <div className="space-y-2">
-                      {(participant.painPoints || ['Operasyonel Verimlilik', 'Dijital Pazarlama', 'Müşteri Deneyimi']).map((point, i) => (
+                      {(participant.painPoints || ['Operasyonel Verimlilik', 'Dijital Pazarlama', 'customer Deneyimi']).map((point, i) => (
                         <div key={i} className="flex items-center justify-between bg-red-50/60 dark:bg-red-900/10 p-2.5 rounded-xl border border-red-100/50 dark:border-red-900/20 group/item">
                           <div className="flex items-center gap-2">
                             <div className="w-1.5 h-1.5 bg-red-500 rounded-full shrink-0"></div>
                             <span className="text-[12px] font-semibold text-slate-700 dark:text-slate-300 leading-tight">{point}</span>
                           </div>
                           {onFilter && (
-                            <button onClick={() => onFilter('painPoint', point)} className="opacity-0 group-hover/item:opacity-100 p-1 hover:bg-red-100 dark:hover:bg-red-900/40 rounded text-red-500 transition-all shrink-0" title="Bu acı noktasına göre filtrele">
+                            <button onClick={() => onFilter('painPoint', point)} className="opacity-0 group-hoandr/item:opacity-100 p-1 hoandr:bg-red-100 dark:hoandr:bg-red-900/40 rounded text-red-500 transition-all shrink-0" title="Bu acı noktasına göre filtrele">
                               <Search size={12} />
                             </button>
                           )}
@@ -167,11 +167,11 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       <span>🛡️</span> PAZAR RAKİPLERİ
                     </h3>
                     <div className="flex flex-wrap gap-1.5">
-                      {(participant.competitors || ['Sektörel Devler', 'Yerel Rakipler', 'Yeni Girişimler']).map((comp, i) => (
+                      {(participant.competitors || ['Sectorel Devler', 'Yerel Rakipler', 'New Girişimler']).map((comp, i) => (
                         <div key={i} className="flex items-center gap-1.5 bg-slate-50 dark:bg-slate-900 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-slate-700 group/comp">
                           <span className="text-[11px] font-bold text-slate-600 dark:text-slate-400">{comp}</span>
                           {onFilter && (
-                            <button onClick={() => onFilter('competitor', comp)} className="opacity-0 group-hover/comp:opacity-100 p-0.5 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded text-blue-500 transition-all" title="Bu rakibe göre filtrele">
+                            <button onClick={() => onFilter('competitor', comp)} className="opacity-0 group-hoandr/comp:opacity-100 p-0.5 hoandr:bg-blue-50 dark:hoandr:bg-blue-900/30 rounded text-blue-500 transition-all" title="Bu rakibe göre filtrele">
                               <Search size={10} />
                             </button>
                           )}
@@ -182,7 +182,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                 </div>
 
                 {/* AI Outreach Engine */}
-                <section className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm overflow-hidden">
+                <section className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm oandrflow-hidden">
                   {/* Section Header */}
                   <div className="bg-slate-50 dark:bg-slate-900/80 px-4 sm:px-6 py-4 border-b border-slate-100 dark:border-slate-700 flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
@@ -198,14 +198,14 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <button onClick={async () => { if (!onRegenerate || !participant) return; setIsRegenerating(true); try { await onRegenerate(participant); } finally { setIsRegenerating(false); } }} disabled={isRegenerating} className="h-9 px-4 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border border-blue-100 dark:border-blue-800 flex items-center gap-1.5" title="Yeniden Oluştur">
+                      <button onClick={async () => { if (!onRegenerate || !participant) return; setIsRegenerating(true); try { await onRegenerate(participant); } finally { setIsRegenerating(false); } }} disabled={isRegenerating} className="h-9 px-4 bg-blue-50 dark:bg-blue-900/20 text-blue-600 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all border border-blue-100 dark:border-blue-800 flex items-center gap-1.5" title="Newden Oluştur">
                         <Wand2 size={14} className={isRegenerating ? 'animate-spin' : ''} />
                         <span className="hidden sm:inline">YENİDEN ÜRET</span>
                       </button>
-                      <button onClick={() => { setDraftContent(''); setSubject(''); updateParticipant && updateParticipant(participant.id, { emailDraft: '', emailSubject: '' }); }} className="h-9 px-3 bg-slate-100 dark:bg-slate-800 text-slate-400 hover:text-red-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center" title="Taslağı Temizle">
+                      <button onClick={() => { setDraftContent(''); setSubject(''); updateParticipant && updateParticipant(participant.id, { emailDraft: '', emailSubject: '' }); }} className="h-9 px-3 bg-slate-100 dark:bg-slate-800 text-slate-400 hoandr:text-red-500 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center" title="Taslağı Temizle">
                         <Trash2 size={14} />
                       </button>
-                      <button onClick={() => copyToClipboard(draftContent || '', 'Email')} className="h-9 px-5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-slate-900 hover:to-slate-800 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-blue-200/50 dark:shadow-none">
+                      <button onClick={() => copyToClipboard(draftContent || '', 'Email')} className="h-9 px-5 bg-gradient-to-r from-blue-600 to-indigo-600 hoandr:from-slate-900 hoandr:to-slate-800 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2 shadow-lg shadow-blue-200/50 dark:shadow-none">
                         <span>KOPYALA</span>
                         <Copy size={13} />
                       </button>
@@ -215,18 +215,18 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                   {/* Content */}
                   <div className="p-4 sm:p-6 space-y-4 bg-white dark:bg-slate-800">
                     {/* Subject */}
-                    <div className="relative">
+                    <div className="relatiand">
                       <div className="absolute -top-2.5 left-4 px-2 bg-white dark:bg-slate-800 text-[9px] font-black text-blue-500 uppercase tracking-[0.2em] z-10">KONU BAŞLIĞI</div>
-                      <div className="bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 overflow-hidden">
+                      <div className="bg-slate-50 dark:bg-slate-950/40 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center gap-3 oandrflow-hidden">
                         <div className="pl-4"><div className="w-2 h-2 rounded-full bg-blue-500"></div></div>
                         <input type="text" value={subject} onChange={handleSubjectChange} placeholder="Email konu başlığı..." className="flex-1 h-11 bg-transparent border-none outline-none text-[14px] font-bold text-slate-900 dark:text-white px-0" />
                       </div>
                     </div>
 
                     {/* Email Body */}
-                    <div className="relative">
+                    <div className="relatiand">
                       <div className="absolute -top-2.5 left-4 px-2 bg-white dark:bg-slate-800 text-[9px] font-black text-slate-400 uppercase tracking-[0.2em] z-10">MESAJ İÇERİĞİ</div>
-                      <div className="bg-white dark:bg-slate-950/60 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[280px] overflow-hidden">
+                      <div className="bg-white dark:bg-slate-950/60 rounded-xl border border-slate-200 dark:border-slate-700 min-h-[280px] oandrflow-hidden">
                         {draftContent ? (
                           <div className="quill-wrapper">
                             <ReactQuill
@@ -238,11 +238,11 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                           </div>
                         ) : (
                           <div className="flex flex-col items-center justify-center py-16 gap-4">
-                            <div className="relative">
+                            <div className="relatiand">
                               <div className="w-12 h-12 border-4 border-blue-600/20 border-t-blue-600 rounded-full animate-spin"></div>
                               <div className="absolute inset-0 flex items-center justify-center text-base">🤖</div>
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 animate-pulse">Nöral Analiz Yapılıyor...</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 animate-pulse">Nöral Analysis Yapılıyor...</span>
                           </div>
                         )}
                       </div>
@@ -252,7 +252,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
                         <h4 className="text-[9px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-1.5"><Paperclip size={11} /> DOSYA EKLERİ ({attachments.length})</h4>
-                        <button onClick={() => attachmentInputRef.current?.click()} className="text-[9px] font-black text-blue-600 hover:text-blue-700 uppercase tracking-widest flex items-center gap-1 transition-colors">+ DOSYA EKLE</button>
+                        <button onClick={() => attachmentInputRef.current?.click()} className="text-[9px] font-black text-blue-600 hoandr:text-blue-700 uppercase tracking-widest flex items-center gap-1 transition-colors">+ DOSYA EKLE</button>
                         <input type="file" multiple ref={attachmentInputRef} onChange={handleFileUpload} className="hidden" />
                       </div>
                       {attachments.length > 0 && (
@@ -260,7 +260,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                           {attachments.map((name, idx) => (
                             <div key={idx} className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 px-2.5 py-1 rounded-lg border border-slate-200 dark:border-slate-700">
                               <span className="text-[10px] font-bold text-slate-600 dark:text-slate-300 max-w-[120px] truncate">{name}</span>
-                              <button onClick={() => removeAttachment(idx)} className="text-slate-400 hover:text-red-500 transition-colors"><X size={10} /></button>
+                              <button onClick={() => remoandAttachment(idx)} className="text-slate-400 hoandr:text-red-500 transition-colors"><X size={10} /></button>
                             </div>
                           ))}
                         </div>
@@ -271,7 +271,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                     <div className="flex items-center gap-3 px-3 py-2.5 bg-emerald-50 dark:bg-emerald-900/10 rounded-xl border border-emerald-100 dark:border-emerald-900/20">
                       <span className="text-emerald-600 text-base">💡</span>
                       <p className="text-[11px] font-bold text-emerald-800 dark:text-emerald-300 leading-tight">
-                        Bu taslak, firmanın <span className="underline decoration-emerald-300">acı noktaları</span> ve <span className="underline decoration-emerald-300">pazar locationu</span> temel alınarak otonom üretilmiştir.
+                        Bu taslak, companynın <span className="underline decoration-emerald-300">acı noktaları</span> and <span className="underline decoration-emerald-300">pazar locationu</span> temel alınarak otonom üretilmiştir.
                       </p>
                     </div>
                   </div>
@@ -300,7 +300,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                         {participant.email && <button onClick={() => copyToClipboard(participant.email, 'Email')} className="text-blue-500 text-sm ml-2 shrink-0">📋</button>}
                       </div>
                     </div>
-                    <a href={participant.website} target="_blank" rel="noreferrer" className="w-full h-10 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-slate-900 transition-all shadow-md shadow-blue-100 dark:shadow-none">
+                    <a href={participant.website} target="_blank" rel="noreferrer" className="w-full h-10 bg-blue-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 hoandr:bg-slate-900 transition-all shadow-md shadow-blue-100 dark:shadow-none">
                       WEB SİTESİNE GİT ➔
                     </a>
                   </div>
@@ -319,7 +319,7 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
                       const url = (participant as any)[social.id];
                       return (
                         <button key={social.id} onClick={() => url && window.open(url)} disabled={!url}
-                          className={`flex items-center justify-between p-3 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all ${url ? 'bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-slate-100 dark:border-slate-700' : 'bg-slate-50/50 dark:bg-slate-900/30 text-slate-300 dark:text-slate-700 cursor-not-allowed'}`}
+                          className={`flex items-center justify-between p-3 rounded-xl font-bold text-[11px] uppercase tracking-widest transition-all ${url ? 'bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white hoandr:bg-blue-50 dark:hoandr:bg-blue-900/20 border border-slate-100 dark:border-slate-700' : 'bg-slate-50/50 dark:bg-slate-900/30 text-slate-300 dark:text-slate-700 cursor-not-allowed'}`}
                         >
                           <div className="flex items-center gap-2"><span>{social.icon}</span>{social.label}</div>
                           {url && <span className="text-blue-500">➔</span>}
@@ -347,13 +347,13 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
           <button
             onClick={handleInternalSend}
             disabled={isSending || !participant.email}
-            className={`flex-1 h-12 sm:h-14 rounded-xl font-black text-[11px] sm:text-[13px] uppercase tracking-[0.2em] transition-all active:scale-95 flex items-center justify-center gap-2 ${!participant.email ? 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-slate-950 shadow-lg shadow-blue-200 dark:shadow-none'}`}
+            className={`flex-1 h-12 sm:h-14 rounded-xl font-black text-[11px] sm:text-[13px] uppercase tracking-[0.2em] transition-all actiand:scale-95 flex items-center justify-center gap-2 ${!participant.email ? 'bg-slate-100 dark:bg-slate-800 text-slate-300 dark:text-slate-600 cursor-not-allowed' : 'bg-blue-600 text-white hoandr:bg-slate-950 shadow-lg shadow-blue-200 dark:shadow-none'}`}
           >
             {isSending ? <div className="w-5 h-5 border-4 border-white/30 border-t-white rounded-full animate-spin"></div> : <>OTONOM MESAJI GÖNDER <span>⚡</span></>}
           </button>
           <button
             onClick={() => copyToClipboard(JSON.stringify(participant), 'Veri')}
-            className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl flex items-center justify-center hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all active:scale-90"
+            className="w-12 h-12 sm:w-14 sm:h-14 bg-slate-50 dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl flex items-center justify-center hoandr:bg-blue-50 dark:hoandr:bg-blue-900/20 transition-all actiand:scale-90"
             title="Veriyi Kopyala"
           >
             <span className="text-lg">📥</span>
@@ -370,11 +370,11 @@ const CompanyDetail: React.FC<Props> = ({ participant, onClose, user, updatePart
       )}
 
       <style>{`
-        @keyframes revealUp {
+        @keyframes reandalUp {
           from { opacity: 0; transform: translateY(20px) scale(0.98); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
         }
-        .animate-reveal-up { animation: revealUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
+        .animate-reandal-up { animation: reandalUp 0.4s cubic-bezier(0.16,1,0.3,1) forwards; }
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 10px; }

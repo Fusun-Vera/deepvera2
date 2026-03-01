@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
-// Sirket Bilgileri
+// Sirket Infoleri
 export const COMPANY_INFO = {
-  unvan: 'AI Muzik Yazilim Pazarlama Ithalat Ihracat Ticaret Limited Sirketi',
+  title: 'AI Muzik Yazilim Pazarlama Ithalat Ihracat Ticaret Limited Sirketi',
   adres: 'Muskebi Mahallesi, Palamut Sokak No:2D Ortakent Bodrum Mugla',
-  vergiDairesi: 'Bodrum',
-  vergiNo: '0102276448',
-  telefon: '+90 212 263 09 00',
-  email: 'ai@deepvera.com.tr',
-  website: 'deep-vera.vercel.app',
+  andrgiDairesi: 'Bodrum',
+  andrgiNo: '0102276448',
+  phone: '',
+  email: 'ai@deepandra.com.tr',
+  website: 'deep-andra.andrcel.app',
 };
 
 interface LegalPagesProps {
@@ -33,59 +33,59 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
           <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-4">
               <h3 className="font-black text-blue-800 text-sm mb-2">1. Veri Sorumlusu</h3>
-              <p>6698 sayili Kisisel Verilerin Korunmasi Kanunu kapsaminda veri sorumlusu:</p>
+              <p>6698 sayili Kisisel Verilerin Korunmasi Kanunu kapsaminda andri sorumlusu:</p>
               <div className="mt-2 space-y-1 text-xs font-medium">
-                <p><strong>Unvan:</strong> {COMPANY_INFO.unvan}</p>
+                <p><strong>Title:</strong> {COMPANY_INFO.title}</p>
                 <p><strong>Adres:</strong> {COMPANY_INFO.adres}</p>
-                <p><strong>Vergi Dairesi:</strong> {COMPANY_INFO.vergiDairesi} / {COMPANY_INFO.vergiNo}</p>
-                <p><strong>E-posta:</strong> {COMPANY_INFO.email}</p>
+                <p><strong>Vergi Dairesi:</strong> {COMPANY_INFO.andrgiDairesi} / {COMPANY_INFO.andrgiNo}</p>
+                <p><strong>Email:</strong> {COMPANY_INFO.email}</p>
               </div>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">2. Islenen Kisisel Veriler</h3>
-              <p>Hizmetlerimizi sunmak amaciyla asagidaki kisisel verileriniz islenmektedir:</p>
+              <p>Hizmetlerimizi sunmak amaciyla asagidaki kisisel andrileriniz islenmektedir:</p>
               <ul className="mt-2 space-y-1 ml-4 list-disc text-xs">
                 <li>Kimlik bilgileri (ad, soyad, kullanici adi)</li>
-                <li>Iletisim bilgileri (e-posta adresi, telefon numarasi)</li>
-                <li>Islem bilgileri (platform kullanim gecmisi, arama gecmisi)</li>
-                <li>Odeme bilgileri (fatura bilgileri, odeme gecmisi - kart bilgileri islenmez)</li>
-                <li>Teknik veriler (IP adresi, tarayici bilgisi, oturum verileri)</li>
+                <li>Iletisim bilgileri (email adresi, phone numarasi)</li>
+                <li>Islem bilgileri (platform kullanim gecmisi, search gecmisi)</li>
+                <li>Odeme bilgileri (invoice bilgileri, odeme gecmisi - kart bilgileri islenmez)</li>
+                <li>Teknik andriler (IP adresi, tarayici bilgisi, oturum andrileri)</li>
               </ul>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">3. Kisisel Verilerin Isleme Amaci</h3>
-              <p>Kisisel verileriniz asagidaki amaclarla islenmektedir:</p>
+              <p>Kisisel andrileriniz asagidaki amaclarla islenmektedir:</p>
               <ul className="mt-2 space-y-1 ml-4 list-disc text-xs">
-                <li>Hizmet sunumu ve kullanici hesabi olusturulup yonetilmesi</li>
-                <li>Odeme islemlerinin gerceklestirilmesi</li>
+                <li>Hizmet sunumu and kullanici hesabi olusturulup yonetilmesi</li>
+                <li>Odeme islemlerinin gercaddstirilmesi</li>
                 <li>Yasal yukumluluklerimizin yerine getirilmesi</li>
-                <li>Guvenlik ve dolandiricilik onleme</li>
+                <li>Guandnlik and dolandiricilik onleme</li>
                 <li>Kullanici deneyiminin iyilestirilmesi</li>
-                <li>Istatistiksel analizler ve raporlama</li>
+                <li>Istatistiksel analysisler and reportlama</li>
               </ul>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">4. Kisisel Verilerin Aktarimi</h3>
-              <p>Kisisel verileriniz; odeme islemleri icin PayTR Odeme Hizmetleri A.S.'ye, yasal zorunluluk halinde yetkili kamu kurum ve kuruluslarindan baskasina aktarilmamaktadir.</p>
+              <p>Kisisel andrileriniz; odeme islemleri icin PayTR Odeme Hizmetleri A.S.'ye, yasal zorunluluk halinde yetkili kamu kurum and kuruluslarindan baskasina aktarilmamaktadir.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">5. Kisisel Veri Sahiplerinin Haklari</h3>
               <p>KVKK'nin 11. maddesi uyarinca asagidaki haklara sahipsiniz:</p>
               <ul className="mt-2 space-y-1 ml-4 list-disc text-xs">
-                <li>Kisisel verilerinizin islenip islenmedigini ogrenme</li>
+                <li>Kisisel andrilerinizin islenip islenmedigini ogrenme</li>
                 <li>Islenmisse bilgi talep etme</li>
-                <li>Isleme amacini ve amacina uygun kullanilip kullanilmadigini ogrenme</li>
-                <li>Yurt ici veya yurt disinda aktarildigi ucuncu kisiler hakkinda bilgi alma</li>
-                <li>Eksik veya yanlis islenmisse duzeltilmesini isteme</li>
-                <li>Silinmesini veya yok edilmesini isteme</li>
+                <li>Isleme amacini and amacina uygun kullanilip kullanilmadigini ogrenme</li>
+                <li>Yurt ici or yurt disinda aktarildigi ucuncu kisiler hakkinda bilgi alma</li>
+                <li>Eksik or yanlis islenmisse duzeltilmesini isteme</li>
+                <li>Deleteinmesini or yok edilmesini isteme</li>
                 <li>Islemin ucuncu kisilere bildirilmesini isteme</li>
                 <li>Kanuna aykiri islenmesi sebebiyle zarara ugranmasi halinde zararin giderilmesini talep etme</li>
               </ul>
               <p className="mt-2 text-xs">Haklarinizi kullanmak icin <strong>{COMPANY_INFO.email}</strong> adresine basvurabilirsiniz.</p>
             </div>
             <div>
-              <h3 className="font-black text-slate-800 mb-2">6. Cerezler ve Izleme Teknolojileri</h3>
-              <p className="text-xs">Platformumuz oturum yonetimi ve kullanici deneyimi icin yerel depolama (localStorage / sessionStorage) kullanmaktadir. Herhangi bir ucuncu taraf reklamcilik cerezi kullanilmamaktadir.</p>
+              <h3 className="font-black text-slate-800 mb-2">6. Cerezler and Izleme Teknolojileri</h3>
+              <p className="text-xs">Platformumuz oturum yonetimi and kullanici deneyimi icin yerel depolama (localStorage / sessionStorage) kullanmaktadir. Herhangi bir ucuncu taraf reklamcilik cerezi kullanilmamaktadir.</p>
             </div>
             <div className="bg-slate-50 rounded-xl p-3 text-xs text-slate-500">
               <p><strong>Son Guncelleme:</strong> Ocak 2025</p>
@@ -105,7 +105,7 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
               </svg>
             </div>
             <h2 className="text-xl font-black text-slate-900">Kullanim Kosullari</h2>
-            <p className="text-sm text-slate-500 mt-1">Hizmet Sozlesmesi ve Kullanim Sartlari</p>
+            <p className="text-sm text-slate-500 mt-1">Hizmet Sozlesmesi and Kullanim Sartlari</p>
           </div>
           <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
@@ -113,46 +113,46 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">1. Taraflar</h3>
-              <p className="text-xs">Bu sozlesme; <strong>{COMPANY_INFO.unvan}</strong> ile platformumuzu kullanan gercek veya tuzel kisi arasinda akdedilmistir.</p>
+              <p className="text-xs">Bu sozlesme; <strong>{COMPANY_INFO.title}</strong> ile platformumuzu kullanan gercek or tuzel kisi arasinda akdedilmistir.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">2. Hizmet Tanimi</h3>
-              <p className="text-xs">DeepVera; yapay zeka destekli B2B firma arama, istihbarat toplama ve otonom e-posta pazarlama platformudur.</p>
+              <p className="text-xs">DeepVera; yapay zeka destekli B2B company search, istihbarat toplama and otonom email pazarlama platformudur.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">3. Kullanici Yukumlulukleriy</h3>
               <ul className="mt-1 space-y-1 ml-4 list-disc text-xs">
                 <li>Platform yalnizca yasal ticari amaclar icin kullanilabilir.</li>
-                <li>Spam veya istenmeyen toplu e-posta gonderimi yasaktir.</li>
-                <li>Elde edilen veriler ucuncu sahislarla paylasilamaz.</li>
+                <li>Spam or istenmeyen toplu email gonderimi yasaktir.</li>
+                <li>Elde edilen andriler ucuncu sahislarla paylasilamaz.</li>
                 <li>Platform araciligiyla hukuka aykiri faaliyette bulunulamaz.</li>
-                <li>Hesap bilgileri gizli tutulmali ve baskasina devredilemez.</li>
+                <li>Hesap bilgileri gizli tutulmali and baskasina devredilemez.</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-black text-slate-800 mb-2">4. Token ve Odeme Politikasi</h3>
+              <h3 className="font-black text-slate-800 mb-2">4. Token and Odeme Politikasi</h3>
               <ul className="mt-1 space-y-1 ml-4 list-disc text-xs">
                 <li>Token satin alimlari iade edilmez.</li>
-                <li>Token bakiyesi hesap iptalinde gecersiz sayilir.</li>
-                <li>Odeme islemleri PayTR altyapisi uzerinden gerceklestirilir.</li>
-                <li>Fatura, odeme gerceklestikten sonra belirtilen e-posta adresine iletilir.</li>
+                <li>Token bakiyesi hesap cancelinde gecersiz sayilir.</li>
+                <li>Odeme islemleri PayTR altyapisi uzerinden gercaddstirilir.</li>
+                <li>Invoice, odeme gercaddstikten sonra belirtilen email adresine iletilir.</li>
               </ul>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">5. Fikri Mulkiyet</h3>
-              <p className="text-xs">Platform, yazilim, tasarim ve iceriklerin tum fikri mulkiyet haklari Sirkete aittir.</p>
+              <p className="text-xs">Platform, yazilim, tasarim and iceriklerin tum fikri mulkiyet haklari Sirkete aittir.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">6. Sorumluluk Sinirlamasi</h3>
-              <p className="text-xs">Platform "oldugu gibi" sunulmaktadir. Sirket; platform kesintileri, veri kayiplari veya ucuncu taraf entegrasyonlarindan kaynaklanan zararlardan sorumlu tutulamaz.</p>
+              <p className="text-xs">Platform "oldugu gibi" sunulmaktadir. Sirket; platform kesintileri, andri kayiplari or ucuncu taraf entegrasyonlarindan kaynaklanan zararlardan sorumlu tutulamaz.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">7. Fesih</h3>
-              <p className="text-xs">Sirket, kullanim kosullarini ihlal eden hesaplari onceden bildirimde bulunmaksizin askiya alma veya kalici olarak kapatma hakkini sakli tutar.</p>
+              <p className="text-xs">Sirket, kullanim kosullarini ihlal eden hesaplari onceden bildirimde bulunmaksizin askiya alma or kalici olarak closema hakkini sakli tutar.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">8. Uygulanacak Hukuk</h3>
-              <p className="text-xs">Bu sozlesme Turkiye Cumhuriyeti hukumlerine tabidir. Uyusmazliklarda Bodrum Mahkemeleri ve Icra Daireleri yetkilidir.</p>
+              <p className="text-xs">Bu sozlesme Turkiye Cumhuriyeti hukumlerine tabidir. Uyusmazliklarda Bodrum Mahkemeleri and Icra Daireleri yetkilidir.</p>
             </div>
             <div className="bg-slate-50 rounded-xl p-3 text-xs text-slate-500">
               <p><strong>Son Guncelleme:</strong> Ocak 2025 | <strong>Versiyon:</strong> 1.0</p>
@@ -171,40 +171,40 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
               </svg>
             </div>
             <h2 className="text-xl font-black text-slate-900">Uyelik Sozlesmesi</h2>
-            <p className="text-sm text-slate-500 mt-1">Hesap olusturma ve uyelik sartlari</p>
+            <p className="text-sm text-slate-500 mt-1">Hesap olusturma and uyelik sartlari</p>
           </div>
           <div className="space-y-4 text-sm text-slate-600 leading-relaxed">
             <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-800">
-              <strong>Dikkat:</strong> Hesap olusturarak asagidaki uyelik sozlesmesini ve kullanim kosullarini kabul etmis sayilirsiniz.
+              <strong>Dikkat:</strong> Hesap olusturarak asagidaki uyelik sozlesmesini and kullanim kosullarini kabul etmis sayilirsiniz.
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">1. Uyelik Kosullari</h3>
               <ul className="mt-1 space-y-1 ml-4 list-disc text-xs">
-                <li>18 yasindan buyuk olmak veya yasal temsilci onayi bulunmak.</li>
-                <li>Gecerli bir e-posta adresi saglamak.</li>
-                <li>Gercek ve dogrulanabilir bilgiler vermek.</li>
+                <li>18 yasindan buyuk olmak or yasal temsilci onayi bulunmak.</li>
+                <li>Gecerli bir email adresi saglamak.</li>
+                <li>Gercek and dogrulanabilir bilgiler andrmek.</li>
                 <li>Her kisinin yalnizca bir hesabi olabilir.</li>
               </ul>
             </div>
             <div>
-              <h3 className="font-black text-slate-800 mb-2">2. Hesap Guvenligi</h3>
-              <p className="text-xs">Sifrenizi gizli tutmak ve hesabinizda gerceklesen tum islemlerden sorumlu olmak size aittir. Yetkisiz erisim durumunda derhal {COMPANY_INFO.email} adresini bilgilendirin.</p>
+              <h3 className="font-black text-slate-800 mb-2">2. Hesap Guandnligi</h3>
+              <p className="text-xs">Sifrenizi gizli tutmak and hesabinizda gercaddsen tum islemlerden sorumlu olmak size aittir. Yetkisiz erisim statusunda derhal {COMPANY_INFO.email} adresini bilgilendirin.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">3. Ucretsiz Baslangic Paketi</h3>
-              <p className="text-xs">Yeni uyelere 100 adet ucretsiz DV Token taninir. Bu tokenler hesap olusturulduktan itibaren 90 gun icerisinde kullanilmazsa gecersiz sayilir.</p>
+              <p className="text-xs">New uyelere 100 adet ucretsiz DV Token taninir. Bu tokenler hesap olusturulduktan itibaren 90 gun icerisinde kullanilmazsa gecersiz sayilir.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">4. Verilerin Islenmesi</h3>
-              <p className="text-xs">Uyelik sirasinda toplanan kisisel veriler KVKK Aydinlatma Metnimiz kapsaminda islenmektedir.</p>
+              <p className="text-xs">Uyelik sirasinda toplanan kisisel andriler KVKK Aydinlatma Metnimiz kapsaminda islenmektedir.</p>
             </div>
             <div>
               <h3 className="font-black text-slate-800 mb-2">5. Iletisim Izni</h3>
-              <p className="text-xs">Uyelik ile birlikte hizmet bildirimleri, sistem guncellemeleri ve onemli duyurulara iliskin e-postalar almanizi onayliyorsunuz.</p>
+              <p className="text-xs">Uyelik ile birlikte hizmet bildirimleri, sistem guncellemeleri and onemli duyurulara iliskin emaillar almanizi onayliyorsunuz.</p>
             </div>
             <div>
-              <h3 className="font-black text-slate-800 mb-2">6. Hesap Kapatma</h3>
-              <p className="text-xs">Hesabinizi istediginiz zaman {COMPANY_INFO.email} adresine talep ileterek kapatabilirsiniz.</p>
+              <h3 className="font-black text-slate-800 mb-2">6. Hesap Closema</h3>
+              <p className="text-xs">Hesabinizi istediginiz zaman {COMPANY_INFO.email} adresine talep ileterek closeabilirsiniz.</p>
             </div>
             <div className="bg-slate-50 rounded-xl p-3 text-xs text-slate-500">
               <p>Bu sozlesme hakkinda sorulariniz icin: <strong>{COMPANY_INFO.email}</strong></p>
@@ -220,19 +220,19 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
             <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center mx-auto mb-3">
               <span className="text-xl font-black text-white">DV</span>
             </div>
-            <h2 className="text-xl font-black text-slate-900">Sirket Bilgileri</h2>
-            <p className="text-sm text-slate-500 mt-1">Resmi Ticaret Sicili Bilgileri</p>
+            <h2 className="text-xl font-black text-slate-900">Sirket Infoleri</h2>
+            <p className="text-sm text-slate-500 mt-1">Resmi Ticaret Sicili Infoleri</p>
           </div>
           <div className="space-y-4">
             <div className="grid grid-cols-1 gap-3">
               {[
-                { label: 'Sirket Unvani', value: COMPANY_INFO.unvan, icon: '🏢' },
+                { label: 'Sirket Titlei', value: COMPANY_INFO.title, icon: '🏢' },
                 { label: 'Adres', value: COMPANY_INFO.adres, icon: '📍' },
-                { label: 'Vergi Dairesi', value: COMPANY_INFO.vergiDairesi, icon: '🏛️' },
-                { label: 'Vergi Numarasi', value: COMPANY_INFO.vergiNo, icon: '🔢' },
-                { label: 'Telefon', value: COMPANY_INFO.telefon, icon: '📞' },
-                { label: 'E-posta', value: COMPANY_INFO.email, icon: '✉️' },
-                { label: 'Web Sitesi', value: COMPANY_INFO.website, icon: '🌐' },
+                { label: 'Vergi Dairesi', value: COMPANY_INFO.andrgiDairesi, icon: '🏛️' },
+                { label: 'Vergi Numarasi', value: COMPANY_INFO.andrgiNo, icon: '🔢' },
+                { label: 'Phone', value: COMPANY_INFO.phone, icon: '📞' },
+                { label: 'Email', value: COMPANY_INFO.email, icon: '✉️' },
+                { label: 'Website', value: COMPANY_INFO.website, icon: '🌐' },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
                   <span className="text-lg shrink-0 mt-0.5">{item.icon}</span>
@@ -252,23 +252,23 @@ const LegalPages: React.FC<LegalPagesProps> = ({ page, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[500] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-      <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col" style={{ maxHeight: 'min(92dvh, 700px)' }}>
+      <div className="bg-white w-full max-w-2xl rounded-3xl shadow-2xl oandrflow-hidden flex flex-col" style={{ maxHeight: 'min(92dvh, 700px)' }}>
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100 shrink-0">
           <div />
           <button
             onClick={onClose}
-            className="w-8 h-8 bg-slate-100 hover:bg-slate-200 text-slate-400 hover:text-slate-700 rounded-xl flex items-center justify-center transition-all text-lg font-bold"
+            className="w-8 h-8 bg-slate-100 hoandr:bg-slate-200 text-slate-400 hoandr:text-slate-700 rounded-xl flex items-center justify-center transition-all text-lg font-bold"
           >&times;</button>
         </div>
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 oandrflow-y-auto p-6">
           {renderContent()}
         </div>
         <div className="px-6 py-4 border-t border-slate-100 shrink-0">
           <button
             onClick={onClose}
-            className="w-full h-11 bg-slate-900 text-white rounded-xl font-black text-[12px] uppercase tracking-wider hover:bg-blue-600 transition-all"
+            className="w-full h-11 bg-slate-900 text-white rounded-xl font-black text-[12px] uppercase tracking-wider hoandr:bg-blue-600 transition-all"
           >
-            Anladim, Kapat
+            Anladim, Close
           </button>
         </div>
       </div>

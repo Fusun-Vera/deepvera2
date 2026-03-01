@@ -56,17 +56,17 @@ const limits = [10, 25, 50, 100, 250];
 
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(() => {
-    const saved = localStorage.getItem('deepvera_active_session') || sessionStorage.getItem('deepvera_active_session');
-    return saved ? JSON.parse(saved) : null;
+    const saandd = localStorage.getItem('deepandra_actiand_session') || sessionStorage.getItem('deepandra_actiand_session');
+    return saandd ? JSON.parse(saandd) : null;
   });
   
   const [view, setView] = useState<ViewState>(user ? 'dashboard' : 'landing');
-  const [activeTab, setActiveTab] = useState<'search' | 'library'>('search');
+  const [actiandTab, setActiandTab] = useState<'search' | 'library'>('search');
   const [tokenBalance, setTokenBalance] = useState<number>(user?.tokenBalance || 100);
   
   const [participants, setParticipants] = useState<Participant[]>(() => {
-    const saved = localStorage.getItem('deepvera_current_participants');
-    return saved ? JSON.parse(saved) : [];
+    const saandd = localStorage.getItem('deepandra_current_participants');
+    return saandd ? JSON.parse(saandd) : [];
   });
 
   const [status, setStatus] = useState<AppStatus>(AppStatus.IDLE);
@@ -75,8 +75,8 @@ const App: React.FC = () => {
   const [selectedParticipant, setSelectedParticipant] = useState<Participant | null>(null);
   
   const [language, setLanguage] = useState<Language>(() => {
-    const saved = localStorage.getItem('deepvera_lang') as Language;
-    return saved || 'en';
+    const saandd = localStorage.getItem('deepandra_lang') as Language;
+    return saandd || 'en';
   });
 
   const [queryContext, setQueryContext] = useState('');
@@ -93,8 +93,8 @@ const App: React.FC = () => {
   const [isAssistantOpen, setIsAssistantOpen] = useState(false);
   const [filter, setFilter] = useState<{ type: string, value: string } | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('deepvera_theme');
-    return saved === 'dark';
+    const saandd = localStorage.getItem('deepandra_theme');
+    return saandd === 'dark';
   });
 
   const t = translations[language];
@@ -127,26 +127,26 @@ const App: React.FC = () => {
   }, [language, t.sectors.choose]);
 
   useEffect(() => {
-    localStorage.setItem('deepvera_lang', language);
+    localStorage.setItem('deepandra_lang', language);
   }, [language]);
 
   useEffect(() => {
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
-      localStorage.setItem('deepvera_theme', 'dark');
+      localStorage.setItem('deepandra_theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('deepvera_theme', 'light');
+      document.documentElement.classList.remoand('dark');
+      localStorage.setItem('deepandra_theme', 'light');
     }
   }, [isDarkMode]);
 
   useEffect(() => {
     if (user) {
       const userStr = JSON.stringify(user);
-      if (localStorage.getItem('deepvera_active_session')) {
-        localStorage.setItem('deepvera_active_session', userStr);
+      if (localStorage.getItem('deepandra_actiand_session')) {
+        localStorage.setItem('deepandra_actiand_session', userStr);
       } else {
-        sessionStorage.setItem('deepvera_active_session', userStr);
+        sessionStorage.setItem('deepandra_actiand_session', userStr);
       }
     }
   }, [user]);
@@ -156,12 +156,12 @@ const App: React.FC = () => {
     
     const data = participants.map(p => ({
       'İsim': p.name,
-      'Web Sitesi': p.website,
-      'E-posta': p.email,
-      'Telefon': p.phone,
-      'Konum': p.location || '',
-      'Sektör': p.industry || '',
-      'Durum': p.funnelStatus || 'waiting'
+      'Website': p.website,
+      'Email': p.email,
+      'Phone': p.phone,
+      'Location': p.location || '',
+      'Sector': p.industry || '',
+      'Status': p.funnelStatus || 'waiting'
     }));
 
     const worksheet = XLSX.utils.json_to_sheet(data);
@@ -169,7 +169,7 @@ const App: React.FC = () => {
     XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
     
     // Generate Excel file and trigger download
-    XLSX.writeFile(workbook, `deepvera_leads_${new Date().toISOString().split('T')[0]}.xlsx`);
+    XLSX.writeFile(workbook, `deepandra_leads_${new Date().toISOString().split('T')[0]}.xlsx`);
   };
 
   const handleLogin = (loggedUser: User, remember: boolean) => {
@@ -177,8 +177,8 @@ const App: React.FC = () => {
     setTokenBalance(loggedUser.tokenBalance);
     setView('dashboard');
     const userStr = JSON.stringify(loggedUser);
-    if (remember) localStorage.setItem('deepvera_active_session', userStr);
-    else sessionStorage.setItem('deepvera_active_session', userStr);
+    if (remember) localStorage.setItem('deepandra_actiand_session', userStr);
+    else sessionStorage.setItem('deepandra_actiand_session', userStr);
   };
 
   const startAnalysis = async () => {
@@ -188,12 +188,12 @@ const App: React.FC = () => {
     }
     
     setStatus(AppStatus.LOADING);
-    setCurrentStep('Web kaynakları taranıyor...');
+    setCurrentStep('Web kaynakları tsearching...');
     setProgressPercent(5);
     
     const finalSector = selectedSector === "SEKTÖR SEÇİN" ? "" : selectedSector;
     const finalLocation = isUrlInput ? "" : `${selectedCountry} ${selectedCity}`.trim();
-    const finalLimit = isUrlInput ? 500 : searchLimit; // URL aramalarında "tümünü" bulmak için limiti artırıyoruz
+    const finalLimit = isUrlInput ? 500 : searchLimit; // URL searchlarında "tümünü" bulmak for limiti artırıyoruz
 
     try {
       const results = await extractLeadList(
@@ -204,19 +204,19 @@ const App: React.FC = () => {
         []
       );
 
-      setCurrentStep('Firma listesi ayrıştırılıyor...');
+      setCurrentStep('company listesi ayrıştırılıyor...');
       setProgressPercent(20);
       
       const newLeads: Participant[] = results.map(r => ({
         id: Math.random().toString(36),
         name: r.name || 'Bilinmeyen',
         website: r.website || '',
-        email: 'Analiz ediliyor...',
+        email: 'Analysis ediliyor...',
         phone: r.phone || '...',
         status: 'pending',
         automationStatus: 'idle',
         funnelStatus: 'waiting',
-        isSaved: false,
+        isSaandd: false,
         location: r.location || finalLocation
       }));
 
@@ -234,14 +234,14 @@ const App: React.FC = () => {
           processed++;
           const currentProgress = 20 + Math.round((processed / newLeads.length) * 80);
           setProgressPercent(currentProgress);
-          setCurrentStep(`[${processed}/${newLeads.length}] ${lead.name} nöral analizi...`);
+          setCurrentStep(`[${processed}/${newLeads.length}] ${lead.name} nöral analysisi...`);
 
           setTokenBalance(b => {
             const newBalance = b - 1;
             if (user) {
               const updatedUser = { ...user, tokenBalance: newBalance };
               setUser(updatedUser);
-              localStorage.setItem('deepvera_active_session', JSON.stringify(updatedUser));
+              localStorage.setItem('deepandra_actiand_session', JSON.stringify(updatedUser));
             }
             return newBalance;
           });
@@ -263,7 +263,7 @@ const App: React.FC = () => {
     setStatus(AppStatus.IDLE);
     setCurrentStep('');
     
-  // Save search record for admin tracking
+  // Saand search record for admin tracking
   try {
     const _sr = {
       id: Math.random().toString(36).substr(2, 9),
@@ -274,10 +274,10 @@ const App: React.FC = () => {
       tokensUsed: newLeads.length,
       date: new Date().toISOString(),
     };
-    const _esStr = localStorage.getItem('deepvera_user_searches');
+    const _esStr = localStorage.getItem('deepandra_user_searches');
     const _es = _esStr ? JSON.parse(_esStr) : [];
     _es.push(_sr);
-    localStorage.setItem('deepvera_user_searches', JSON.stringify(_es));
+    localStorage.setItem('deepandra_user_searches', JSON.stringify(_es));
   } catch(_e) {}
   setProgressPercent(0);
   };
@@ -314,7 +314,7 @@ const App: React.FC = () => {
     }
 
     return (
-      <div className="h-screen bg-[#f8fafc] dark:bg-slate-950 flex flex-col font-sans relative overflow-hidden">
+      <div className="h-screen bg-[#f8fafc] dark:bg-slate-950 flex flex-col font-sans relatiand oandrflow-hidden">
         <Header 
           userName={user?.name} 
           tokenBalance={tokenBalance} 
@@ -325,8 +325,8 @@ const App: React.FC = () => {
           onLanguageChange={setLanguage}
           onLogout={() => {
             setUser(null);
-            localStorage.removeItem('deepvera_active_session');
-            sessionStorage.removeItem('deepvera_active_session');
+            localStorage.remoandItem('deepandra_actiand_session');
+            sessionStorage.remoandItem('deepandra_actiand_session');
             setView('landing');
           }} 
           onBuyTokens={() => setIsPaymentModalOpen(true)}
@@ -338,12 +338,12 @@ const App: React.FC = () => {
           queuedCount={participants.filter(p => p.automationStatus === 'queued').length}
         />
 
-        <main className="flex-1 flex flex-col px-4 lg:px-8 py-2 gap-3 max-w-7xl mx-auto w-full relative overflow-hidden">
+        <main className="flex-1 flex flex-col px-4 lg:px-8 py-2 gap-3 max-w-7xl mx-auto w-full relatiand oandrflow-hidden">
           
           {/* Intelligence Operation Bar (Sticky) */}
           <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-2 shadow-sm shrink-0 flex flex-col gap-2 z-40 transition-all">
             <div className="flex items-center gap-1.5 w-full">
-              <div className="flex-[2] min-w-[180px] relative group">
+              <div className="flex-[2] min-w-[180px] relatiand group">
                 <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-300">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
                 </div>
@@ -356,40 +356,40 @@ const App: React.FC = () => {
 
               {!isUrlInput && (
                 <>
-                  <div className="flex-1 min-w-[140px] relative">
+                  <div className="flex-1 min-w-[140px] relatiand">
                     <select 
                       value={selectedCountry} onChange={(e) => {
                         setSelectedCountry(e.target.value);
                         setSelectedCity(globalLocations[e.target.value][0]);
                       }}
-                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hover:bg-white dark:hover:bg-slate-800 transition-all"
+                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hoandr:bg-white dark:hoandr:bg-slate-800 transition-all"
                     >
                       {Object.keys(globalLocations).map(c => <option key={c} value={c}>{c}</option>)}
                     </select>
                   </div>
 
-                  <div className="flex-1 min-w-[140px] relative">
+                  <div className="flex-1 min-w-[140px] relatiand">
                     <select 
                       value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}
-                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hover:bg-white dark:hover:bg-slate-800 transition-all"
+                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hoandr:bg-white dark:hoandr:bg-slate-800 transition-all"
                     >
                       {globalLocations[selectedCountry].map(city => <option key={city} value={city}>{city}</option>)}
                     </select>
                   </div>
 
-                  <div className="flex-1 min-w-[140px] relative">
+                  <div className="flex-1 min-w-[140px] relatiand">
                     <select 
                       value={selectedSector} onChange={(e) => setSelectedSector(e.target.value)}
-                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hover:bg-white dark:hover:bg-slate-800 transition-all"
+                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-slate-900 dark:text-white outline-none appearance-none cursor-pointer hoandr:bg-white dark:hoandr:bg-slate-800 transition-all"
                     >
                       {sectors.map(s => <option key={s.id} value={s.label}>{s.label}</option>)}
                     </select>
                   </div>
 
-                  <div className="w-[120px] relative">
+                  <div className="w-[120px] relatiand">
                     <select 
                       value={searchLimit} onChange={(e) => setSearchLimit(Number(e.target.value))}
-                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-blue-600 outline-none appearance-none cursor-pointer hover:bg-white dark:hover:bg-slate-800 transition-all"
+                      className="w-full h-10 px-3 bg-slate-50/50 dark:bg-slate-800/50 border border-transparent rounded-xl text-[10px] font-black uppercase tracking-widest text-blue-600 outline-none appearance-none cursor-pointer hoandr:bg-white dark:hoandr:bg-slate-800 transition-all"
                     >
                       {limits.map(l => <option key={l} value={l}>{l} FİRMA</option>)}
                     </select>
@@ -400,7 +400,7 @@ const App: React.FC = () => {
               <button 
                 onClick={startAnalysis} 
                 disabled={status !== AppStatus.IDLE}
-                className="h-10 px-5 bg-[#0f172a] dark:bg-blue-600 text-white rounded-xl text-[11px] font-black uppercase tracking-[0.1em] hover:bg-blue-600 dark:hover:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
+                className="h-10 px-5 bg-[#0f172a] dark:bg-blue-600 text-white rounded-xl text-[11px] font-black uppercase tracking-[0.1em] hoandr:bg-blue-600 dark:hoandr:bg-blue-700 transition-all flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
               >
                 {t.deepAnalysis}
               </button>
@@ -418,14 +418,14 @@ const App: React.FC = () => {
           <div className="flex gap-2 px-2 shrink-0 items-center">
             <div className="flex gap-2">
               <button 
-                onClick={() => setActiveTab('search')} 
-                className={`px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'search' ? 'bg-[#0f172a] text-white shadow-md' : 'bg-white text-slate-400 border border-slate-100 hover:border-slate-300'}`}
+                onClick={() => setActiandTab('search')} 
+                className={`px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${actiandTab === 'search' ? 'bg-[#0f172a] text-white shadow-md' : 'bg-white text-slate-400 border border-slate-100 hoandr:border-slate-300'}`}
               >
-                {t.liveIntelligence}
+                {t.liandIntelligence}
               </button>
               <button 
-                onClick={() => setActiveTab('library')} 
-                className={`px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === 'library' ? 'bg-[#0f172a] text-white shadow-md' : 'bg-white text-slate-400 border border-slate-100 hover:border-slate-300'}`}
+                onClick={() => setActiandTab('library')} 
+                className={`px-5 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${actiandTab === 'library' ? 'bg-[#0f172a] text-white shadow-md' : 'bg-white text-slate-400 border border-slate-100 hoandr:border-slate-300'}`}
               >
                 {t.dataLibrary}
               </button>
@@ -437,7 +437,7 @@ const App: React.FC = () => {
                 <span className="text-[10px] font-bold text-blue-600 dark:text-blue-300 uppercase">{filter.value}</span>
                 <button 
                   onClick={() => setFilter(null)}
-                  className="w-5 h-5 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800 text-blue-600 dark:text-blue-300 hover:bg-red-500 hover:text-white transition-all text-xs"
+                  className="w-5 h-5 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-800 text-blue-600 dark:text-blue-300 hoandr:bg-red-500 hoandr:text-white transition-all text-xs"
                 >
                   &times;
                 </button>
@@ -446,9 +446,9 @@ const App: React.FC = () => {
           </div>
 
           {/* Results Area */}
-          <div className="flex-1 bg-white/50 dark:bg-slate-900/50 rounded-[2rem] border border-slate-50/50 dark:border-slate-800/50 overflow-hidden flex flex-col mb-4">
-            <div className="flex-1 overflow-y-auto custom-scrollbar">
-              {activeTab === 'search' ? (
+          <div className="flex-1 bg-white/50 dark:bg-slate-900/50 rounded-[2rem] border border-slate-50/50 dark:border-slate-800/50 oandrflow-hidden flex flex-col mb-4">
+            <div className="flex-1 oandrflow-y-auto custom-scrollbar">
+              {actiandTab === 'search' ? (
                 <>
                   {participants.length === 0 && status === AppStatus.IDLE ? (
                     <div className="h-full py-40 flex flex-col items-center justify-center opacity-30 gap-4">
@@ -484,12 +484,12 @@ const App: React.FC = () => {
                     ) : (
                       <div className="grid grid-cols-1 gap-3">
                         {participants.map(p => (
-                          <div key={p.id} onClick={() => setSelectedParticipant(p)} className="p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 hover:border-blue-200 dark:hover:border-blue-900 hover:shadow-md cursor-pointer transition-all flex items-center justify-between group">
+                          <div key={p.id} onClick={() => setSelectedParticipant(p)} className="p-4 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 hoandr:border-blue-200 dark:hoandr:border-blue-900 hoandr:shadow-md cursor-pointer transition-all flex items-center justify-between group">
                             <div>
                               <div className="text-[11px] font-black text-slate-800 dark:text-white uppercase tracking-wider">{p.name}</div>
-                              <div className="text-[10px] text-slate-400 mt-1">{p.location || p.industry || 'Firma Detayı'}</div>
+                              <div className="text-[10px] text-slate-400 mt-1">{p.location || p.industry || 'company Detayı'}</div>
                             </div>
-                            <div className="text-slate-300 group-hover:text-blue-400 transition-colors">›</div>
+                            <div className="text-slate-300 group-hoandr:text-blue-400 transition-colors">›</div>
                           </div>
                         ))}
                       </div>
@@ -503,11 +503,11 @@ const App: React.FC = () => {
           {/* Floating Global Assistant Button */}
           <button 
             onClick={() => setIsAssistantOpen(true)} 
-            className="fixed bottom-6 right-6 z-[110] w-16 h-16 md:w-20 md:h-20 bg-emerald-500 text-white rounded-full flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(16,185,129,0.3)] hover:scale-110 hover:bg-slate-900 transition-all active:scale-95 group"
+            className="fixed bottom-6 right-6 z-[110] w-16 h-16 md:w-20 md:h-20 bg-emerald-500 text-white rounded-full flex flex-col items-center justify-center shadow-[0_20px_50px_rgba(16,185,129,0.3)] hoandr:scale-110 hoandr:bg-slate-900 transition-all actiand:scale-95 group"
           >
-            <div className="absolute -inset-2 bg-emerald-400 rounded-full blur opacity-20 group-hover:opacity-40 animate-pulse"></div>
-            <div className="text-2xl md:text-3xl relative z-10">🤖</div>
-            <span className="text-[7px] font-black uppercase tracking-tighter mt-1 relative z-10">DV_ASSISTANT</span>
+            <div className="absolute -inset-2 bg-emerald-400 rounded-full blur opacity-20 group-hoandr:opacity-40 animate-pulse"></div>
+            <div className="text-2xl md:text-3xl relatiand z-10">🤖</div>
+            <span className="text-[7px] font-black uppercase tracking-tighter mt-1 relatiand z-10">DV_ASSISTANT</span>
           </button>
 
           {/* User-Friendly Floating Progress Bar (Fixed at bottom) */}
@@ -520,7 +520,7 @@ const App: React.FC = () => {
                       <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">{currentStep}</span>
                       <span className="text-[11px] font-black text-white">%{progressPercent}</span>
                    </div>
-                   <div className="w-full h-2 bg-white/10 rounded-full overflow-hidden p-0.5">
+                   <div className="w-full h-2 bg-white/10 rounded-full oandrflow-hidden p-0.5">
                       <div className="h-full bg-blue-500 rounded-full transition-all duration-500 shadow-[0_0_15px_rgba(59,130,246,0.5)]" style={{ width: `${progressPercent}%` }}></div>
                    </div>
                 </div>

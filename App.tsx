@@ -16,6 +16,18 @@ import AdminPanel from './components/AdminPanel';
 import GmailCenter from './components/GmailCenter';
 import AutonomousWorker from './components/AutonomousWorker';
 
+const AUSTRALIA_REGIONS = [
+  "All Australia",
+  "New South Wales (NSW)", "Victoria (VIC)", "Queensland (QLD)",
+  "Western Australia (WA)", "South Australia (SA)", "Tasmania (TAS)",
+  "Australian Capital Territory (ACT)", "Northern Territory (NT)",
+  "Sydney", "Melbourne", "Brisbane", "Perth", "Adelaide",
+  "Hobart", "Darwin", "Canberra", "Gold Coast", "Newcastle",
+  "Wollongong", "Geelong", "Townsville", "Cairns", "Toowoomba",
+  "Sunshine Coast", "Central Coast", "Ballarat", "Bendigo",
+  "Launceston", "Mackay", "Rockhampton", "Bunbury", "Bundaberg"
+];
+
 const globalLocations: Record<string, string[]> = {
   "TÜRKİYE": [
     "İSTANBUL", "ANKARA", "İZMİR", 

@@ -12,8 +12,8 @@ interface Props {
 }
 
 const tokenPackages = [
-  { id: '1', name: 'Başlangıç', tokens: 100, price: 299, priceLabel: '299 TL', perToken: '2.99 TL / kredi', color: 'slate', badge: null, desc: 'Küçük çaplı analizler için ideal başlangıç noktası', features: ['100 Derin Firma Analizi', 'Firma Profili & İletişim', 'Email & Telefon Bilgisi', 'Excel Dışa Aktarım'] },
-  { id: '2', name: 'Profesyonel', tokens: 500, price: 1299, priceLabel: '1.299 TL', perToken: '2.60 TL / kredi', color: 'blue', badge: 'En Popüler', desc: 'Aktif satış ekipleri için en çok tercih edilen paket', features: ['500 Derin Firma Analizi', 'Gelişmiş Firma Profili', 'Sosyal Medya Analizi', 'Rakip & Pazar Analizi', 'Otonom Email Gönderimi', 'Excel Dışa Aktarım'] },
+  { id: '1', name: 'Başlangıç', tokens: 100, price: 299, priceLabel: '299 TL', perToken: '2.99 TL / kredi', color: 'slate', badge: null, desc: 'Küçük çaplı analizler için ideal başlangıç noktası', features: ['100 Derin Firma Analizi', 'Firma Profili & Contact', 'Email & Phone Number Bilgisi', 'Excel Dışa Aktarım'] },
+  { id: '2', name: 'Profesyonel', tokens: 500, price: 1299, priceLabel: '1.299 TL', perToken: '2.60 TL / kredi', color: 'blue', badge: 'En Popüler', desc: 'Active satış ekipleri için en çok tercih edilen paket', features: ['500 Derin Firma Analizi', 'Gelişmiş Firma Profili', 'Sosyal Medya Analizi', 'Rakip & Pazar Analizi', 'Otonom Email Sendimi', 'Excel Dışa Aktarım'] },
   { id: '3', name: 'Kurumsal', tokens: 1000, price: 1999, priceLabel: '1.999 TL', perToken: '2.00 TL / kredi', color: 'violet', badge: 'En Avantajlı', desc: 'Büyük operasyonlar için maksimum kapasite ve tasarruf', features: ['1000 Derin Firma Analizi', 'Tam Zeka Profili', 'Sosyal & Dijital Analiz', 'Rakip Haritası', 'Otonom Email + Otomatik Takip', 'Öncelikli Destek', 'Excel Dışa Aktarım'] },
 ];
 
@@ -52,7 +52,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
         onSuccess(pendingTokens);
         onClose();
       } else if (data.status === 'failed') {
-        setPaytrError('Ödeme başarısız. Lütfen tekrar deneyin.');
+        setPaytrError('Payment başarısız. Lütfen tekrar deneyin.');
         setPaytrToken('');
         setStep('select');
         window.removeEventListener('message', handleIframeMessage);
@@ -77,7 +77,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
         setStep('paying');
         window.addEventListener('message', handleIframeMessage);
       } else {
-        setPaytrError(data.reason || 'Ödeme başlatılırken hata oluştu.');
+        setPaytrError(data.reason || 'Payment başlatılırken hata oluştu.');
       }
     } catch (error) {
       setPaytrError('Bağlantı hatası. Lütfen tekrar deneyin.');
@@ -106,7 +106,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
                 <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
               </div>
               <div>
-                <h2 className="text-sm font-black text-white">Güvenli Ödeme</h2>
+                <h2 className="text-sm font-black text-white">Güvenli Payment</h2>
                 <p className="text-[9px] text-emerald-100 font-bold uppercase tracking-widest">256-bit SSL • PayTR • {selectedPkg.name} • {selectedPkg.priceLabel}</p>
               </div>
             </div>
@@ -123,7 +123,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
               frameBorder={0}
               scrolling="yes"
               style={{ width: '100%', height: '100%', display: 'block', border: 'none' }}
-              title="PayTR Güvenli Ödeme"
+              title="PayTR Güvenli Payment"
             />
           </div>
 
@@ -152,7 +152,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
                 <h2 className="text-[18px] font-black text-white tracking-tight">DeepVera Analiz Kredisi</h2>
                 <span className="px-2 py-0.5 bg-blue-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full">YENİ</span>
               </div>
-              <p className="text-[11px] text-slate-400 mt-0.5">Anında yükleme • Güvenli ödeme • Fatura kesilir • KDV dahil</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Anında yükleme • Güvenli ödeme • Invoice kesilir • KDV dahil</p>
             </div>
           </div>
           <button onClick={onClose} className="w-9 h-9 bg-white/10 hover:bg-white/20 text-white rounded-xl flex items-center justify-center transition-all text-xl shrink-0">&times;</button>
@@ -233,7 +233,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
                 { d: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', label: 'SSL Güvenli' },
                 { d: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z', label: 'PayTR' },
                 { d: 'M13 10V3L4 14h7v7l9-11h-7z', label: 'Anında Kredi' },
-                { d: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', label: 'Fatura' },
+                { d: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z', label: 'Invoice' },
               ].map((item, i) => (
                 <div key={i} className="flex flex-col items-center justify-center gap-1 bg-white rounded-xl p-2.5 border border-slate-100">
                   <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={item.d}/></svg>
@@ -263,7 +263,7 @@ const PaymentModal: React.FC<Props> = ({ isOpen, currentUser, onClose, onSuccess
                 {loading ? (
                   <>
                     <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
-                    <span>Ödeme Hazırlanıyor...</span>
+                    <span>Payment Hazırlanıyor...</span>
                   </>
                 ) : (
                   <>

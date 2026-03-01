@@ -9,8 +9,8 @@ interface LandingPageProps {
 }
 
 const COMPANY_INFO = {
-  title: 'Aİ Müzik Yazılım Pazarlama İthalat İhracat Ticaret Limited Şirketi',
-  adres: 'Müskebi Mahallesi, Palamut Sokak No:2D Ortakent Bodrum Muğla',
+  title: 'DeepVera AI Pty Ltd',
+  adres: 'Sydney, New South Wales, Australia',
   andrgiDairesi: 'Bodrum',
   andrgiNo: '0102276448',
   phone: '',

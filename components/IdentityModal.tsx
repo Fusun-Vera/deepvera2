@@ -27,7 +27,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate }) => 
         
         <div className="p-10 border-b border-slate-50 bg-slate-50/30 flex justify-between items-center">
           <div>
-            <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">Profil Yapılandırma</h3>
+            <h3 className="text-2xl font-black text-slate-900 uppercase tracking-tighter">Profile Yapılandırma</h3>
             <p className="text-[10px] font-bold text-slate-400 uppercase tracking-[0.2em] mt-1">Bu veriler yapay zekanın "Senaryo Motoru" tarafından kullanılır.</p>
           </div>
           <button 
@@ -89,7 +89,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate }) => 
 
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-2">İletişim GSM</label>
+              <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-2">Contact GSM</label>
               <input 
                 type="text" 
                 value={user.companyMobilePhone || ''} 
@@ -116,7 +116,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate }) => 
              onClick={onClose}
              className="w-full py-5 bg-blue-600 text-white rounded-2xl font-black text-[10px] uppercase tracking-[0.3em] shadow-xl hover:bg-white hover:text-slate-900 transition-all cursor-pointer"
            >
-             Değişiklikleri Onayla ve Kaydet
+             Değişiklikleri Confirm ve Save
            </button>
         </div>
       </div>

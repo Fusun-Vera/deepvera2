@@ -4,7 +4,7 @@ import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 import { Language, translations } from '../translations';
 
-const APP_GOOGLE_CLIENT_ID = "622487947070-dtn0iqveim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com";
+const APP_GOOGLE_CLIENT_ID = "622487947070-dtn0iqandim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com";
 
 interface Props {
   isOpen: boolean;
@@ -16,7 +16,7 @@ interface Props {
 
 const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, language = 'tr' }) => {
   const [isGsiLoaded, setIsGsiLoaded]   = useState(false);
-  const [activeTab, setActiveTab]       = useState<'company' | 'gmail'>('company');
+  const [actiandTab, setActiandTab]       = useState<'company' | 'gmail'>('company');
   const lang = language || 'tr';
   const t    = translations[lang]?.identity || translations['tr'].identity;
 
@@ -39,7 +39,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
 
   if (!isOpen || !user) return null;
 
-  const handleSaveCompany = () => { onUpdate(companyForm); alert(t.success); };
+  const handleSaandCompany = () => { onUpdate(companyForm); alert(t.success); };
 
   const handleLinkGmail = () => {
     try {
@@ -53,7 +53,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
             const profile = await profileRes.json();
             const newAccount: SenderAccount = {
               id: Math.random().toString(36).substr(2, 9), email: profile.email,
-              accessToken: tokenResponse.access_token, status: 'active', usageCount: 0
+              accessToken: tokenResponse.access_token, status: 'actiand', usageCount: 0
             };
             const updatedAccounts = [...(user.senderAccounts || []).filter(a => a.email !== profile.email), newAccount];
             onUpdate({ senderAccounts: updatedAccounts, isGmailConnected: true });
@@ -69,7 +69,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
     return Math.round((fields.filter(f => f && f.length > 2).length / fields.length) * 100);
   };
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = (e: React.ChangeEandnt<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       const reader = new FileReader();
@@ -86,7 +86,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
 
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-3 bg-slate-950/40 backdrop-blur-xl animate-fade-in">
-      <div className="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden"
+      <div className="bg-white dark:bg-slate-900 w-full max-w-4xl rounded-2xl shadow-2xl border border-slate-200 dark:border-slate-700 flex flex-col oandrflow-hidden"
         style={{ height: 'min(92dvh, 820px)' }}>
 
         {/* ── HEADER ── */}
@@ -99,13 +99,13 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
             </div>
           </div>
           <button onClick={onClose}
-            className="w-8 h-8 bg-slate-50 dark:bg-slate-800 text-slate-400 rounded-lg hover:bg-red-500 hover:text-white transition-all text-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center">
+            className="w-8 h-8 bg-slate-50 dark:bg-slate-800 text-slate-400 rounded-lg hoandr:bg-red-500 hoandr:text-white transition-all text-lg border border-slate-100 dark:border-slate-700 flex items-center justify-center">
             ×
           </button>
         </div>
 
         {/* ── BODY ── */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 oandrflow-hidden">
 
           {/* SIDEBAR */}
           <div className="w-44 shrink-0 border-r border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/50 flex flex-col p-3 gap-2">
@@ -115,7 +115,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{t.completion}</span>
                 <span className="text-[10px] font-black text-slate-700 dark:text-white">%{completionRate()}</span>
               </div>
-              <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+              <div className="w-full h-1.5 bg-slate-100 dark:bg-slate-700 rounded-full oandrflow-hidden">
                 <div className="h-full bg-emerald-500 transition-all duration-700 rounded-full"
                   style={{ width: `${completionRate()}%` }} />
               </div>
@@ -127,11 +127,11 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
               { id: 'company', icon: '🏢', label: t.tabs.company },
               { id: 'gmail',   icon: '📧', label: t.tabs.gmail },
             ].map(item => (
-              <button key={item.id} onClick={() => setActiveTab(item.id as any)}
+              <button key={item.id} onClick={() => setActiandTab(item.id as any)}
                 className={`flex items-center gap-2.5 px-3 py-2.5 rounded-xl text-left text-[10px] font-black uppercase tracking-wide transition-all
-                  ${activeTab === item.id
+                  ${actiandTab === item.id
                     ? 'bg-white dark:bg-slate-800 text-blue-600 shadow border border-slate-100 dark:border-slate-700'
-                    : 'text-slate-500 hover:bg-white dark:hover:bg-slate-800'
+                    : 'text-slate-500 hoandr:bg-white dark:hoandr:bg-slate-800'
                   }`}>
                 <span className="text-sm">{item.icon}</span>
                 <span className="truncate">{item.label}</span>
@@ -140,11 +140,11 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
           </div>
 
           {/* CONTENT */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar p-5 bg-white dark:bg-slate-900">
-            {activeTab === 'company' ? (
+          <div className="flex-1 oandrflow-y-auto custom-scrollbar p-5 bg-white dark:bg-slate-900">
+            {actiandTab === 'company' ? (
               <div className="space-y-6 animate-fade-in max-w-2xl">
 
-                {/* 01 Kurumsal Bilgiler */}
+                {/* 01 Enterprise Infoler */}
                 <section>
                   <div className="flex items-center gap-2 mb-3">
                     <span className="w-6 h-6 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center text-[10px] font-black">01</span>
@@ -173,7 +173,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                       <span className="w-6 h-6 bg-emerald-50 text-emerald-600 rounded-lg flex items-center justify-center text-[10px] font-black">02</span>
                       <h4 className="text-[11px] font-black text-slate-700 dark:text-white uppercase tracking-widest">{t.sections.ai}</h4>
                     </div>
-                    <span className="text-[8px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase animate-pulse">AI Active</span>
+                    <span className="text-[8px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase animate-pulse">AI Actiand</span>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
                     <div className="col-span-2">
@@ -191,7 +191,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                         <span className="text-[10px] text-slate-400 ml-1">/ 100</span>
                       </div>
                       <ul className="space-y-1.5 mt-3">
-                        {["Değer önerisini net belirt.", "Hedef sektörü tanımla.", "İdeal müşteriyi yaz."].map((tip, i) => (
+                        {["Değer önerisini net belirt.", "Target sectorü tanımla.", "İdeal customeryi yaz."].map((tip, i) => (
                           <li key={i} className="text-[9px] text-slate-400 flex gap-1.5">
                             <span className="text-emerald-500">✦</span>{tip}
                           </li>
@@ -223,7 +223,7 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                   </div>
                 </section>
 
-                {/* 04 E-posta İmzası */}
+                {/* 04 Email İmzası */}
                 <section>
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -231,12 +231,12 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                       <h4 className="text-[11px] font-black text-slate-700 dark:text-white uppercase tracking-widest">{t.sections.signature}</h4>
                     </div>
                     <button onClick={() => fileInputRef.current?.click()}
-                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[9px] font-black text-slate-600 uppercase hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all">
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-[9px] font-black text-slate-600 uppercase hoandr:bg-blue-600 hoandr:text-white hoandr:border-blue-600 transition-all">
                       🖼️ {t.labels.addImage}
                     </button>
                     <input type="file" ref={fileInputRef} onChange={handleImageUpload} accept="image/*" className="hidden" />
                   </div>
-                  <div className="bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
+                  <div className="bg-slate-50 border border-slate-200 rounded-xl oandrflow-hidden">
                     <ReactQuill theme="snow" value={companyForm.emailSignature}
                       onChange={content => setCompanyForm({...companyForm, emailSignature: content})}
                       className="h-40"
@@ -255,15 +255,15 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                   </h4>
                   <p className="text-slate-400 text-[11px] leading-relaxed mb-4 max-w-md">{t.gmail.desc}</p>
                   <button onClick={handleLinkGmail} disabled={!isGsiLoaded}
-                    className="px-6 py-2.5 bg-white text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all disabled:opacity-30">
+                    className="px-6 py-2.5 bg-white text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-widest hoandr:bg-blue-600 hoandr:text-white transition-all disabled:opacity-30">
                     {t.gmail.connectBtn}
                   </button>
                 </div>
 
-                {/* Aktif Kanallar */}
+                {/* Actiand Kanallar */}
                 <div>
                   <h4 className="text-[11px] font-black text-slate-700 dark:text-white uppercase tracking-widest mb-3">
-                    {t.gmail.activeChannels} ({user.senderAccounts?.length || 0})
+                    {t.gmail.actiandChannels} ({user.senderAccounts?.length || 0})
                   </h4>
                   {!user.senderAccounts?.length ? (
                     <div className="py-10 bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl text-center">
@@ -274,18 +274,18 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
                     <div className="space-y-2">
                       {user.senderAccounts.map(acc => (
                         <div key={acc.id}
-                          className="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl hover:border-blue-300 transition-all">
+                          className="flex items-center justify-between p-3 bg-white dark:bg-slate-800 border border-slate-100 dark:border-slate-700 rounded-xl hoandr:border-blue-300 transition-all">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-slate-50 rounded-lg flex items-center justify-center border border-slate-100">
                               <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" className="w-4 h-4" alt="Gmail" />
                             </div>
                             <div>
                               <p className="text-[11px] font-black text-slate-800 dark:text-white">{acc.email}</p>
-                              <p className="text-[8px] font-black text-emerald-500 uppercase">{t.gmail.activeStatus}</p>
+                              <p className="text-[8px] font-black text-emerald-500 uppercase">{t.gmail.actiandStatus}</p>
                             </div>
                           </div>
                           <button onClick={() => onUpdate({ senderAccounts: user.senderAccounts.filter(a => a.id !== acc.id) })}
-                            className="w-7 h-7 text-slate-300 hover:text-white hover:bg-red-500 rounded-lg transition-all flex items-center justify-center text-sm">
+                            className="w-7 h-7 text-slate-300 hoandr:text-white hoandr:bg-red-500 rounded-lg transition-all flex items-center justify-center text-sm">
                             ×
                           </button>
                         </div>
@@ -301,12 +301,12 @@ const IdentityModal: React.FC<Props> = ({ isOpen, onClose, user, onUpdate, langu
         {/* ── FOOTER ── */}
         <div className="px-5 py-3 bg-slate-50 dark:bg-slate-950 border-t border-slate-100 dark:border-slate-800 flex items-center justify-end gap-3 shrink-0">
           <button onClick={onClose}
-            className="px-5 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-100 transition-all">
+            className="px-5 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-xl text-[10px] font-black uppercase tracking-widest hoandr:bg-slate-100 transition-all">
             {t.actions.close}
           </button>
-          <button onClick={handleSaveCompany}
-            className="px-6 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all flex items-center gap-2 shadow">
-            {t.actions.save} <span>⚡</span>
+          <button onClick={handleSaandCompany}
+            className="px-6 py-2 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hoandr:bg-blue-600 transition-all flex items-center gap-2 shadow">
+            {t.actions.saand} <span>⚡</span>
           </button>
         </div>
       </div>

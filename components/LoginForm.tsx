@@ -215,7 +215,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
     if (activeTab === 'signup') {
       const exists = db.find((u) => u.username === normalizedUser || u.email === formData.email);
       if (exists) {
-        setStatusMsg({ text: isTr ? 'Bu kullanici adi veya e-posta zaten kullaniliyor.' : 'Username or email already in use.', type: 'error' });
+        setStatusMsg({ text: isTr ? 'Bu kullanici adi veya email zaten kullaniliyor.' : 'Username or email already in use.', type: 'error' });
         setLoading(false);
         return;
       }
@@ -248,7 +248,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
   };
 
   const features = [
-    { text: isTr ? 'AI ile firma tarama' : 'AI company scanning' },
+    { text: isTr ? 'AI ile firma tsearch' : 'AI company scanning' },
     { text: isTr ? 'Derin firma analizi' : 'Deep company analysis' },
     { text: isTr ? 'Otonom email gonderimi' : 'Autonomous email sending' },
     { text: isTr ? 'Canli istihbarat paneli' : 'Live intelligence panel' },

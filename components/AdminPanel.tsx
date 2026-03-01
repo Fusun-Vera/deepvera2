@@ -118,7 +118,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
             </div>
             <div className="p-10 bg-blue-600/10 border border-blue-500/20 rounded-[3rem] space-y-3 relative overflow-hidden group">
                <div className="absolute top-0 right-0 p-4 opacity-10 text-4xl group-hover:scale-125 transition-transform">💎</div>
-               <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">Aktif Token Hacmi</p>
+               <p className="text-[10px] font-black text-blue-400 uppercase tracking-[0.2em]">Active Token Hacmi</p>
                <h3 className="text-5xl font-black text-blue-500">{totalTokens.toLocaleString()}</h3>
             </div>
             <div className="p-10 bg-amber-500/10 border border-amber-500/20 rounded-[3rem] space-y-3 relative overflow-hidden group">
@@ -138,11 +138,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
             <div className="p-8 border-b border-white/10 flex justify-between items-center bg-white/[0.02]">
                <div className="flex items-center gap-6">
                   <h4 className="text-[12px] font-black text-white uppercase tracking-[0.3em]">Üye Yönetim Paneli</h4>
-                  <span className="px-4 py-1.5 bg-white/5 rounded-full text-[10px] font-bold text-slate-400">Filtrele: "{searchTerm || 'Hepsi'}"</span>
+                  <span className="px-4 py-1.5 bg-white/5 rounded-full text-[10px] font-bold text-slate-400">Filter: "{searchTerm || 'Hepsi'}"</span>
                </div>
                <input 
                  type="text" 
-                 placeholder="Kullanıcı adı, şirket veya e-posta ara..." 
+                 placeholder="Kullanıcı adı, şirket veya email ara..." 
                  value={searchTerm}
                  onChange={(e) => setSearchTerm(e.target.value)}
                  className="bg-slate-800 border border-white/10 rounded-2xl px-8 py-4 text-xs text-white outline-none focus:border-blue-500 w-[400px] shadow-inner"
@@ -153,11 +153,11 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose }) => {
                <table className="w-full text-left border-separate border-spacing-y-4">
                   <thead>
                      <tr className="text-slate-500 text-[10px] font-black uppercase tracking-widest">
-                        <th className="px-8 py-4">Kullanıcı Bilgisi</th>
-                        <th className="px-8 py-4">İletişim & Şirket</th>
-                        <th className="px-8 py-4">Şifre & Durum</th>
+                        <th className="px-8 py-4">Kullanıcı Informationsi</th>
+                        <th className="px-8 py-4">Contact & Şirket</th>
+                        <th className="px-8 py-4">Password & Status</th>
                         <th className="px-8 py-4">Token Bakiyesi</th>
-                        <th className="px-8 py-4 text-right">Yönetimsel İşlemler</th>
+                        <th className="px-8 py-4 text-right">Yönetimsel Actionler</th>
                      </tr>
                   </thead>
                   <tbody>

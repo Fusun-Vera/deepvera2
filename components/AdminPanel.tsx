@@ -76,9 +76,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
 
   const tabs = [
     { id: 'users', label: 'Kullanicilar' },
-    { id: 'searches', label: 'Aramalar' },
+    { id: 'searches', label: 'Searchlar' },
     { id: 'payments', label: 'Odemeler' },
-    { id: 'emails', label: 'E-postalar' },
+    { id: 'emails', label: 'Emaillar' },
     { id: 'system', label: 'Sistem' },
   ];
 
@@ -122,7 +122,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
         {[
           { label: 'Toplam Kullanici', value: users.length, color: 'text-slate-900' },
           { label: 'Toplam Token', value: totalTokens.toLocaleString('tr-TR'), color: 'text-blue-600' },
-          { label: 'Toplam Arama', value: searches.length, color: 'text-violet-600' },
+          { label: 'Toplam Search', value: searches.length, color: 'text-violet-600' },
           { label: 'Odeme Islem', value: payments.length, color: 'text-emerald-600' },
           { label: 'Toplam Gelir', value: totalPaid.toLocaleString('tr-TR') + ' TL', color: 'text-emerald-700' },
           { label: 'Email Gonderildi', value: sentEmailCount, color: 'text-blue-600' },
@@ -159,7 +159,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
               ) : (
                 <div className="flex-1 overflow-y-auto">
                   <div className="grid grid-cols-[2fr_2fr_1fr_80px] px-5 py-2 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                    <span>Kullanici</span><span>E-posta</span><span>Token</span><span className="text-right">Sil</span>
+                    <span>Kullanici</span><span>Email</span><span>Token</span><span className="text-right">Delete</span>
                   </div>
                   {filteredUsers.map(u => (
                     <div
@@ -226,9 +226,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
                   </div>
                   {/* User searches */}
                   <div>
-                    <h4 className="text-[11px] font-black text-slate-700 uppercase tracking-widest mb-3">Arama Gecmisi ({userSearches.length})</h4>
+                    <h4 className="text-[11px] font-black text-slate-700 uppercase tracking-widest mb-3">Search Gecmisi ({userSearches.length})</h4>
                     {userSearches.length === 0 ? (
-                      <div className="text-[11px] text-slate-400 py-4 text-center bg-slate-50 rounded-xl border border-slate-100">Henuz arama yapilmamis</div>
+                      <div className="text-[11px] text-slate-400 py-4 text-center bg-slate-50 rounded-xl border border-slate-100">Henuz search yapilmamis</div>
                     ) : (
                       <div className="space-y-2">
                         {userSearches.slice().reverse().map((s, i) => (
@@ -274,19 +274,19 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
         {activeTab === 'searches' && (
           <div className="flex-1 flex flex-col overflow-hidden">
             <div className="px-5 py-3 border-b border-slate-100">
-              <span className="text-[11px] font-black text-slate-700">{searches.length} toplam arama kaydedildi</span>
+              <span className="text-[11px] font-black text-slate-700">{searches.length} toplam search kaydedildi</span>
             </div>
             {searches.length === 0 ? (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center opacity-40">
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Henuz arama verisi yok</p>
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Henuz search verisi yok</p>
                   <p className="text-[10px] text-slate-400 mt-1">Kullanicilar analiz yaptikca burada gorunecek</p>
                 </div>
               </div>
             ) : (
               <div className="flex-1 overflow-y-auto">
                 <div className="grid grid-cols-[2fr_1.5fr_1.5fr_1fr_1fr_1fr] px-5 py-2 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                  <span>Kullanici</span><span>Sektor</span><span>Konum</span><span>Firma</span><span>Token</span><span>Tarih</span>
+                  <span>Kullanici</span><span>Sektor</span><span>Location</span><span>Firma</span><span>Token</span><span>Date</span>
                 </div>
                 {searches.slice().reverse().map((s, i) => {
                   const u = users.find(u => u.id === s.userId);
@@ -326,7 +326,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
             ) : (
               <div className="flex-1 overflow-y-auto">
                 <div className="grid grid-cols-[2fr_2fr_1.5fr_1fr_1fr] px-5 py-2 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                  <span>Kullanici</span><span>Paket</span><span>Token</span><span>Tutar</span><span>Tarih</span>
+                  <span>Kullanici</span><span>Paket</span><span>Token</span><span>Tutar</span><span>Date</span>
                 </div>
                 {payments.slice().reverse().map((p, i) => {
                   const u = users.find(u => u.id === p.userId);
@@ -354,7 +354,7 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
             {/* Filter + summary bar */}
             <div className="px-5 py-3 border-b border-slate-100 bg-white flex items-center gap-4 flex-wrap shrink-0">
               <div className="flex items-center gap-3 flex-wrap">
-                <span className="text-[11px] font-black text-slate-700">{emailLogs.length} toplam e-posta</span>
+                <span className="text-[11px] font-black text-slate-700">{emailLogs.length} toplam email</span>
                 <div className="flex items-center gap-1.5">
                   <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 border border-emerald-100 px-2 py-1 rounded-lg uppercase tracking-widest">{sentEmailCount} Gonderildi</span>
                   <span className="text-[9px] font-black text-amber-600 bg-amber-50 border border-amber-100 px-2 py-1 rounded-lg uppercase tracking-widest">{queuedEmailCount} Sirada</span>
@@ -374,14 +374,14 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
             {filteredEmailLogs.length === 0 ? (
               <div className="flex-1 flex items-center justify-center">
                 <div className="text-center opacity-40">
-                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">E-posta kaydı bulunamadi</p>
+                  <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">Email kaydı bulunamadi</p>
                   <p className="text-[10px] text-slate-400 mt-1">Gmail Komuta Merkezi'nden email gonderdikce burada gorunecek</p>
                 </div>
               </div>
             ) : (
               <div className="flex-1 overflow-y-auto">
                 <div className="grid grid-cols-[2.5fr_2fr_1.5fr_1fr_1fr] px-5 py-2 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                  <span>Firma</span><span>Email</span><span>Konu</span><span>Durum</span><span>Tarih</span>
+                  <span>Firma</span><span>Email</span><span>Konu</span><span>Durum</span><span>Date</span>
                 </div>
                 {filteredEmailLogs.slice().reverse().map((log, i) => (
                   <div key={i} className="grid grid-cols-[2.5fr_2fr_1.5fr_1fr_1fr] items-center px-5 py-3 border-b border-slate-50 hover:bg-slate-50 transition-colors">
@@ -418,12 +418,12 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
                 <h4 className="text-[11px] font-black text-slate-700 uppercase tracking-widest mb-4">Sistem Bilgileri</h4>
                 <div className="space-y-2.5">
                   {[
-                    { label: 'Aktif Yonetici', value: currentUser?.username || 'admin', color: 'text-blue-600' },
+                    { label: 'Active Yonetici', value: currentUser?.username || 'admin', color: 'text-blue-600' },
                     { label: 'Yetki Seviyesi', value: 'Root / Full Access', color: 'text-emerald-600' },
                     { label: 'Platform', value: 'DeepVera v3.1', color: 'text-slate-700' },
                     { label: 'Sistem Durumu', value: 'ONLINE', color: 'text-emerald-600' },
                     { label: 'Kayitli Kullanici', value: users.length + ' kisi', color: 'text-slate-700' },
-                    { label: 'Toplam Arama', value: searches.length + ' islem', color: 'text-violet-600' },
+                    { label: 'Toplam Search', value: searches.length + ' islem', color: 'text-violet-600' },
                     { label: 'Toplam Odeme', value: totalPaid.toLocaleString('tr-TR') + ' TL', color: 'text-emerald-700' },
                     { label: 'Email Gonderildi', value: sentEmailCount + ' adet', color: 'text-blue-600' },
                     { label: 'Email Sirada', value: queuedEmailCount + ' adet', color: 'text-amber-600' },
@@ -439,9 +439,9 @@ const AdminPanel: React.FC<AdminPanelProps> = ({ onClose, currentUser }) => {
                 <h4 className="text-[11px] font-black text-red-600 uppercase tracking-widest mb-2">Tehlikeli Bolge</h4>
                 <p className="text-[11px] text-red-400 mb-4">Bu islemler geri alinamaz. Dikkatli kullanin.</p>
                 <div className="flex flex-wrap gap-3">
-                  <button onClick={() => { if (confirm('Tum kullanici verilerini silmek istiyor musunuz?')) { localStorage.removeItem(USERS_DB_KEY); setUsers([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Kullanicilari Sil</button>
-                  <button onClick={() => { if (confirm('Tum arama verilerini silmek istiyor musunuz?')) { localStorage.removeItem(SEARCHES_KEY); setSearches([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Aramalari Sil</button>
-                  <button onClick={() => { if (confirm('Email loglarini silmek istiyor musunuz?')) { localStorage.removeItem(EMAIL_LOG_KEY); setEmailLogs([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Email Loglarini Sil</button>
+                  <button onClick={() => { if (confirm('Tum kullanici verilerini silmek istiyor musunuz?')) { localStorage.removeItem(USERS_DB_KEY); setUsers([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Kullanicilari Delete</button>
+                  <button onClick={() => { if (confirm('Tum search verilerini silmek istiyor musunuz?')) { localStorage.removeItem(SEARCHES_KEY); setSearches([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Searchlari Delete</button>
+                  <button onClick={() => { if (confirm('Email loglarini silmek istiyor musunuz?')) { localStorage.removeItem(EMAIL_LOG_KEY); setEmailLogs([]); }}} className="px-4 h-9 bg-red-100 hover:bg-red-500 text-red-600 hover:text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Email Loglarini Delete</button>
                   <button onClick={() => { if (confirm('TUM sistem sifirlanacak! Onayliyor musunuz?')) { localStorage.clear(); window.location.reload(); }}} className="px-4 h-9 bg-red-500 hover:bg-red-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest transition-all">Sistemi Sifirla</button>
                 </div>
               </div>

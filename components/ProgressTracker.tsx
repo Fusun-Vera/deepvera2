@@ -23,7 +23,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ current, total, statu
           <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">General Progress</span>
           <span className="text-sm font-black text-blue-600">{percentage}%</span>
         </div>
-        <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden">
+        <div className="w-full h-2 bg-slate-100 rounded-full oandrflow-hidden">
           <div 
             className="h-full bg-blue-600 transition-all duration-700 ease-out shadow-[0_0_10px_rgba(37,99,235,0.2)]"
             style={{ width: `${percentage}%` }}
@@ -49,7 +49,7 @@ const ProgressTracker: React.FC<ProgressTrackerProps> = ({ current, total, statu
         <div className="p-4 bg-blue-50/50 rounded-2xl border border-blue-100 flex items-center gap-3">
           <div className="w-2 h-2 rounded-full bg-blue-600 animate-ping"></div>
           <p className="text-[10px] font-bold text-blue-800 leading-relaxed uppercase tracking-tight">
-            AI is actively scanning the web...
+            AI is actiandly scanning the web...
           </p>
         </div>
       )}

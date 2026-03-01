@@ -56,8 +56,8 @@ interface ComposeState {
   mode: 'initial' | 'followup';
 }
 
-const EMAIL_LOG_KEY = 'deepvera_email_logs';
-const SENDER_ACCOUNTS_KEY = 'deepvera_sender_accounts';
+const EMAIL_LOG_KEY = 'deepandra_email_logs';
+const SENDER_ACCOUNTS_KEY = 'deepandra_sender_accounts';
 const MAX_SENDER_ACCOUNTS = 20;
 const SEND_INTERVAL_MS = 3 * 60 * 1000; // 3 minutes
 
@@ -77,10 +77,10 @@ function playNotificationSound() {
   } catch (e) {}
 }
 
-const GOOGLE_CLIENT_ID = '622487947070-dtn0iqveim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '622487947070-dtn0iqandim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com';
 
 const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], updateParticipant, onOpenIdentity, onUpdateUser }) => {
-  const [activeTab, setActiveTab] = useState<'accounts' | 'inbox' | 'log' | 'replies' | 'stats'>('accounts');
+  const [actiandTab, setActiandTab] = useState<'accounts' | 'inbox' | 'log' | 'replies' | 'stats'>('accounts');
   const [emails, setEmails] = useState<Email[]>([]);
   const [emailLogs, setEmailLogs] = useState<EmailRecord[]>([]);
   const [senderAccounts, setSenderAccounts] = useState<SenderAccount[]>([]);
@@ -89,7 +89,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
   const [logFilter, setLogFilter] = useState<'all' | 'sent' | 'queued' | 'failed'>('all');
   const [connectingGmail, setConnectingGmail] = useState(false);
   const [connectError, setConnectError] = useState<string | null>(null);
-  const [bulkQueueActive, setBulkQueueActive] = useState(false);
+  const [bulkQueueActiand, setBulkQueueActiand] = useState(false);
   const [bulkTimer, setBulkTimer] = useState<number>(0);
   const [currentSenderIdx, setCurrentSenderIdx] = useState(0);
   const [newAccountLabel, setNewAccountLabel] = useState('');
@@ -100,11 +100,11 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
 
   // Load data
   useEffect(() => {
-    const savedLogs = localStorage.getItem(EMAIL_LOG_KEY);
-    if (savedLogs) setEmailLogs(JSON.parse(savedLogs));
-    const savedAccounts = localStorage.getItem(SENDER_ACCOUNTS_KEY);
-    if (savedAccounts) {
-      setSenderAccounts(JSON.parse(savedAccounts));
+    const saanddLogs = localStorage.getItem(EMAIL_LOG_KEY);
+    if (saanddLogs) setEmailLogs(JSON.parse(saanddLogs));
+    const saanddAccounts = localStorage.getItem(SENDER_ACCOUNTS_KEY);
+    if (saanddAccounts) {
+      setSenderAccounts(JSON.parse(saanddAccounts));
     } else if (user?.googleAccessToken && user?.email) {
       // Add primary account if exists
       const primary: SenderAccount = {
@@ -121,12 +121,12 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
     }
   }, []);
 
-  const saveLogs = (logs: EmailRecord[]) => {
+  const saandLogs = (logs: EmailRecord[]) => {
     setEmailLogs(logs);
     localStorage.setItem(EMAIL_LOG_KEY, JSON.stringify(logs));
   };
 
-  const saveAccounts = (accounts: SenderAccount[]) => {
+  const saandAccounts = (accounts: SenderAccount[]) => {
     setSenderAccounts(accounts);
     localStorage.setItem(SENDER_ACCOUNTS_KEY, JSON.stringify(accounts));
   };
@@ -134,7 +134,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
   // Add Gmail account via OAuth
   const handleAddGmailAccount = async () => {
     if (senderAccounts.length >= MAX_SENDER_ACCOUNTS) {
-      alert(`Maksimum ${MAX_SENDER_ACCOUNTS} Gmail hesabi eklenebilir.`);
+      alert(`Maksimum ${MAX_SENDER_ACCOUNTS} Gmail hesabi addnebilir.`);
       return;
     }
     setConnectingGmail(true);
@@ -159,7 +159,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
         ].join(' '),
         callback: async (response: any) => {
           if (response.error) {
-            setConnectError('Google erisim hatasi: ' + response.error);
+            setConnectError('Google erisim errorsi: ' + response.error);
             setConnectingGmail(false);
             return;
           }
@@ -184,11 +184,11 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
               isConnected: true,
             };
             const updated = [...senderAccounts, newAccount];
-            saveAccounts(updated);
+            saandAccounts(updated);
             setNewAccountLabel('');
             setAddingAccount(false);
           } catch (e) {
-            setConnectError('Profil bilgisi alinirken hata olustu.');
+            setConnectError('Profil bilgisi alinirken error olustu.');
           }
           setConnectingGmail(false);
         },
@@ -200,26 +200,26 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
     }
   };
 
-  const removeAccount = (id: string) => {
+  const remoandAccount = (id: string) => {
     if (!confirm('Bu hesabi silmek istiyor musunuz?')) return;
-    saveAccounts(senderAccounts.filter(a => a.id !== id));
+    saandAccounts(senderAccounts.filter(a => a.id !== id));
   };
 
-  // Bulk send: send to queued participants from rotating accounts every 3 minutes
+  // Bulk send: send to queued participants from rotating accounts eandry 3 minutes
   const startBulkSend = () => {
-    const queued = participants.filter(p => p.automationStatus === 'queued' && p.email && p.email !== 'Analiz ediliyor...');
+    const queued = participants.filter(p => p.automationStatus === 'queued' && p.email && p.email !== 'Analysis ediliyor...');
     const connectedAccounts = senderAccounts.filter(a => a.isConnected && a.accessToken);
-    if (queued.length === 0) { alert('Sirada bekleyen firma yok. Once firma siraya ekleyin.'); return; }
-    if (connectedAccounts.length === 0) { alert('Bagli Gmail hesabi yok. Once hesap ekleyin.'); return; }
-    setBulkQueueActive(true);
+    if (queued.length === 0) { alert('Sirada baddyen company yok. Once company siraya addyin.'); return; }
+    if (connectedAccounts.length === 0) { alert('Bagli Gmail hesabi yok. Once hesap addyin.'); return; }
+    setBulkQueueActiand(true);
     let idx = 0;
     let accountIdx = currentSenderIdx % connectedAccounts.length;
     const processNext = async () => {
       if (idx >= queued.length) {
         clearInterval(bulkIntervalRef.current);
-        setBulkQueueActive(false);
+        setBulkQueueActiand(false);
         setBulkTimer(0);
-        alert('Tum firmalar icin email gonderimi tamamlandi!');
+        alert('Tum companylar icin email gonderimi tamamlandi!');
         return;
       }
       const lead = queued[idx];
@@ -252,11 +252,11 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
         }
       } catch (e) { newLog.status = 'failed'; }
       const updated = [...emailLogs, newLog];
-      saveLogs(updated);
+      saandLogs(updated);
       if (updateParticipant) updateParticipant(lead.id, { automationStatus: 'sent' as any, funnelStatus: 'contacted' });
       // Update account stats
       const updatedAccounts = senderAccounts.map(a => a.id === account.id ? { ...a, sentCount: (a.sentCount || 0) + 1, lastUsed: new Date().toISOString() } : a);
-      saveAccounts(updatedAccounts);
+      saandAccounts(updatedAccounts);
       idx++;
       accountIdx++;
       setCurrentSenderIdx(accountIdx);
@@ -270,16 +270,16 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
 
   const stopBulkSend = () => {
     clearInterval(bulkIntervalRef.current);
-    setBulkQueueActive(false);
+    setBulkQueueActiand(false);
     setBulkTimer(0);
   };
 
   // Countdown timer display
   useEffect(() => {
-    if (!bulkQueueActive || bulkTimer <= 0) return;
+    if (!bulkQueueActiand || bulkTimer <= 0) return;
     const t = setInterval(() => setBulkTimer(prev => Math.max(0, prev - 1)), 1000);
     return () => clearInterval(t);
-  }, [bulkQueueActive, bulkTimer]);
+  }, [bulkQueueActiand, bulkTimer]);
 
   useEffect(() => {
     return () => { if (bulkIntervalRef.current) clearInterval(bulkIntervalRef.current); };
@@ -326,7 +326,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
         hasReply: false,
         sentFromEmail: primaryAccount?.email || 'manual',
       };
-      saveLogs([...emailLogs, newLog]);
+      saandLogs([...emailLogs, newLog]);
       setCompose(c => ({ ...c, open: false }));
       alert(`Email gonderildi: ${compose.to}`);
     } catch (e) { alert('Email gonderilemedi.'); }
@@ -336,7 +336,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
   const tabs = [
     { id: 'accounts', label: 'Gmail Hesaplari', icon: '📧', badge: senderAccounts.length },
     { id: 'inbox', label: 'Gelen Kutusu', icon: 'IN' },
-    { id: 'log', label: 'E-posta Takip', icon: 'LOG', badge: emailLogs.length },
+    { id: 'log', label: 'Email Takip', icon: 'LOG', badge: emailLogs.length },
     { id: 'replies', label: 'Yanitlar', icon: 'YNT', badge: replyCount },
     { id: 'stats', label: 'Istatistik', icon: '📊' },
   ];
@@ -346,10 +346,10 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
       {/* COMPOSE MODAL */}
       {compose.open && (
         <div className="fixed inset-0 z-[1100] flex items-center justify-center p-4 bg-slate-950/60">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl border border-slate-200 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-xl border border-slate-200 oandrflow-hidden">
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 bg-slate-50">
-              <h3 className="text-[13px] font-black text-slate-900 uppercase">{compose.mode === 'initial' ? 'Kurumsal Email Gonder' : 'Takip Emaili'}</h3>
-              <button onClick={() => setCompose(c => ({ ...c, open: false }))} className="w-8 h-8 bg-slate-100 hover:bg-red-50 hover:text-red-500 rounded-lg flex items-center justify-center text-slate-400 transition-all">&times;</button>
+              <h3 className="text-[13px] font-black text-slate-900 uppercase">{compose.mode === 'initial' ? 'Enterprise Email Gonder' : 'Takip Emaili'}</h3>
+              <button onClick={() => setCompose(c => ({ ...c, open: false }))} className="w-8 h-8 bg-slate-100 hoandr:bg-red-50 hoandr:text-red-500 rounded-lg flex items-center justify-center text-slate-400 transition-all">&times;</button>
             </div>
             <div className="p-5 space-y-3">
               <div><label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">Alici</label><input type="email" value={compose.to} onChange={e => setCompose(c => ({ ...c, to: e.target.value }))} className="w-full h-9 px-3 bg-slate-50 border border-slate-200 rounded-lg text-[12px] outline-none focus:border-blue-400" /></div>
@@ -364,7 +364,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
         </div>
       )}
 
-      <div className="bg-white w-full max-w-6xl flex flex-col rounded-2xl shadow-2xl border border-slate-200 overflow-hidden" style={{ height: 'min(92dvh, 860px)' }}>
+      <div className="bg-white w-full max-w-6xl flex flex-col rounded-2xl shadow-2xl border border-slate-200 oandrflow-hidden" style={{ height: 'min(92dvh, 860px)' }}>
         {/* HEADER */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-slate-100 shrink-0 bg-white">
           <div className="flex items-center gap-3">
@@ -376,7 +376,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                 <span className="text-[9px] font-bold text-blue-600 uppercase tracking-widest">
                   {senderAccounts.filter(a => a.isConnected).length}/{MAX_SENDER_ACCOUNTS} Hesap &bull; {sentCount} Gonderildi &bull; {replyCount} Yanit
                 </span>
-                {bulkQueueActive && bulkTimer > 0 && (
+                {bulkQueueActiand && bulkTimer > 0 && (
                   <span className="text-[9px] font-black text-amber-600 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full">
                     Sonraki: {Math.floor(bulkTimer / 60)}:{String(bulkTimer % 60).padStart(2, '0')}
                   </span>
@@ -385,26 +385,26 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
             </div>
           </div>
           <div className="flex items-center gap-2">
-            {bulkQueueActive ? (
-              <button onClick={stopBulkSend} className="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-wider bg-red-500 text-white hover:bg-red-600 transition-all">Dur</button>
+            {bulkQueueActiand ? (
+              <button onClick={stopBulkSend} className="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-wider bg-red-500 text-white hoandr:bg-red-600 transition-all">Dur</button>
             ) : (
-              <button onClick={startBulkSend} className="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-wider bg-blue-600 text-white hover:bg-blue-700 transition-all shadow-md">
+              <button onClick={startBulkSend} className="h-9 px-4 rounded-xl text-[10px] font-black uppercase tracking-wider bg-blue-600 text-white hoandr:bg-blue-700 transition-all shadow-md">
                 Toplu Gonderim Baslat
               </button>
             )}
-            <button onClick={onClose} className="w-9 h-9 bg-slate-100 hover:bg-red-500 hover:text-white rounded-xl flex items-center justify-center text-slate-400 text-lg transition-all">&times;</button>
+            <button onClick={onClose} className="w-9 h-9 bg-slate-100 hoandr:bg-red-500 hoandr:text-white rounded-xl flex items-center justify-center text-slate-400 text-lg transition-all">&times;</button>
           </div>
         </div>
 
         {/* BODY */}
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-1 oandrflow-hidden">
           {/* SIDEBAR */}
-          <div className="w-56 shrink-0 flex flex-col border-r border-slate-100 bg-slate-50 overflow-y-auto">
+          <div className="w-56 shrink-0 flex flex-col border-r border-slate-100 bg-slate-50 oandrflow-y-auto">
             <div className="p-3 space-y-1">
-              <button onClick={() => setCompose({ open: true, to: '', companyName: '', subject: 'Is Birligi Teklifi', body: '', mode: 'initial' })} className="w-full py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest mb-3 shadow-lg hover:bg-blue-700 active:scale-95 transition-all">Yeni Mesaj Yaz</button>
+              <button onClick={() => setCompose({ open: true, to: '', companyName: '', subject: 'Is Birligi Teklifi', body: '', mode: 'initial' })} className="w-full py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest mb-3 shadow-lg hoandr:bg-blue-700 actiand:scale-95 transition-all">New Mesaj Yaz</button>
               {tabs.map(item => (
-                <button key={item.id} onClick={() => setActiveTab(item.id as any)} className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all text-left ${activeTab === item.id ? 'bg-white text-blue-600 shadow border border-slate-100 font-black' : 'text-slate-500 hover:bg-white font-bold'}`}>
-                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded ${activeTab === item.id ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'}`}>{item.icon}</span>
+                <button key={item.id} onClick={() => setActiandTab(item.id as any)} className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-xl transition-all text-left ${actiandTab === item.id ? 'bg-white text-blue-600 shadow border border-slate-100 font-black' : 'text-slate-500 hoandr:bg-white font-bold'}`}>
+                  <span className={`text-[9px] font-black px-1.5 py-0.5 rounded ${actiandTab === item.id ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'}`}>{item.icon}</span>
                   <span className="text-[11px] uppercase tracking-wider flex-1">{item.label}</span>
                   {item.badge !== undefined && item.badge > 0 && (
                     <span className={`text-[9px] font-black px-1.5 py-0.5 rounded-full ${item.id === 'replies' ? 'bg-red-500 text-white' : 'bg-blue-100 text-blue-600'}`}>{item.badge}</span>
@@ -421,11 +421,11 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
           </div>
 
           {/* CONTENT */}
-          <div className="flex-1 overflow-hidden flex flex-col bg-white">
+          <div className="flex-1 oandrflow-hidden flex flex-col bg-white">
 
             {/* ACCOUNTS TAB */}
-            {activeTab === 'accounts' && (
-              <div className="flex flex-col h-full overflow-hidden">
+            {actiandTab === 'accounts' && (
+              <div className="flex flex-col h-full oandrflow-hidden">
                 <div className="px-5 py-4 border-b border-slate-100 bg-slate-50 shrink-0">
                   <div className="flex items-center justify-between mb-3">
                     <div>
@@ -433,40 +433,40 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                       <p className="text-[10px] text-slate-400 mt-0.5">Her 3 dakikada bir siradaki hesaptan mail gider</p>
                     </div>
                     {senderAccounts.length < MAX_SENDER_ACCOUNTS && (
-                      <button onClick={() => setAddingAccount(true)} className="h-9 px-4 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-700 transition-all shadow-md">+ Hesap Ekle</button>
+                      <button onClick={() => setAddingAccount(true)} className="h-9 px-4 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hoandr:bg-blue-700 transition-all shadow-md">+ Hesap Add</button>
                     )}
                   </div>
                   {addingAccount && (
                     <div className="flex gap-2 mt-2">
                       <input type="text" value={newAccountLabel} onChange={e => setNewAccountLabel(e.target.value)} placeholder="Hesap etiketi (opsiyonel)" className="flex-1 h-9 px-3 bg-white border border-slate-200 rounded-lg text-[12px] outline-none focus:border-blue-400" />
-                      <button onClick={handleAddGmailAccount} disabled={connectingGmail} className="h-9 px-4 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase hover:bg-blue-700 disabled:opacity-60 transition-all">{connectingGmail ? 'Baglaniyor...' : 'Google ile Bagla'}</button>
-                      <button onClick={() => { setAddingAccount(false); setNewAccountLabel(''); }} className="h-9 px-3 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-black uppercase hover:bg-slate-200">Iptal</button>
+                      <button onClick={handleAddGmailAccount} disabled={connectingGmail} className="h-9 px-4 bg-blue-600 text-white rounded-lg text-[10px] font-black uppercase hoandr:bg-blue-700 disabled:opacity-60 transition-all">{connectingGmail ? 'Baglaniyor...' : 'Google ile Bagla'}</button>
+                      <button onClick={() => { setAddingAccount(false); setNewAccountLabel(''); }} className="h-9 px-3 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-black uppercase hoandr:bg-slate-200">Iptal</button>
                     </div>
                   )}
                   {connectError && <div className="mt-2 text-[11px] text-red-600 bg-red-50 border border-red-100 rounded-xl px-3 py-2">{connectError}</div>}
-                  {bulkQueueActive && (
+                  {bulkQueueActiand && (
                     <div className="mt-2 flex items-center gap-3 bg-blue-50 border border-blue-200 rounded-xl px-4 py-2.5">
                       <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse shrink-0" />
-                      <span className="text-[11px] font-bold text-blue-700">Toplu gonderim aktif — {bulkTimer > 0 ? `Sonraki: ${Math.floor(bulkTimer/60)}:${String(bulkTimer%60).padStart(2,'0')}` : 'Gonderiliyor...'}</span>
+                      <span className="text-[11px] font-bold text-blue-700">Toplu gonderim actiand — {bulkTimer > 0 ? `Sonraki: ${Math.floor(bulkTimer/60)}:${String(bulkTimer%60).padStart(2,'0')}` : 'Gonderiliyor...'}</span>
                     </div>
                   )}
                 </div>
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex-1 oandrflow-y-auto">
                   {senderAccounts.length === 0 ? (
                     <div className="h-full flex flex-col items-center justify-center gap-4 text-center p-10">
                       <div className="w-16 h-16 bg-slate-100 rounded-2xl flex items-center justify-center text-2xl">M</div>
                       <div>
-                        <h3 className="text-[13px] font-black text-slate-700">Henuz hesap eklenmedi</h3>
-                        <p className="text-[11px] text-slate-400 mt-1 max-w-xs">20 adet Gmail hesabi ekleyerek toplu ve sirali email gonderimi yapabilirsiniz.</p>
+                        <h3 className="text-[13px] font-black text-slate-700">Henuz hesap addnmedi</h3>
+                        <p className="text-[11px] text-slate-400 mt-1 max-w-xs">20 adet Gmail hesabi addyerek toplu and sirali email gonderimi yapabilirsiniz.</p>
                       </div>
                     </div>
                   ) : (
                     <div>
                       <div className="grid grid-cols-[auto_1fr_1fr_80px_80px_60px] px-5 py-2.5 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                        <span className="w-7">#</span><span>Email</span><span>Etiket</span><span className="text-center">Gonderildi</span><span className="text-center">Yanit</span><span className="text-right">Sil</span>
+                        <span className="w-7">#</span><span>Email</span><span>Etiket</span><span className="text-center">Gonderildi</span><span className="text-center">Yanit</span><span className="text-right">Delete</span>
                       </div>
                       {accountStats.map((acc, idx) => (
-                        <div key={acc.id} className={`grid grid-cols-[auto_1fr_1fr_80px_80px_60px] items-center px-5 py-3.5 border-b border-slate-50 hover:bg-slate-50 transition-colors ${currentSenderIdx % Math.max(1, senderAccounts.filter(a=>a.isConnected).length) === senderAccounts.filter(a=>a.isConnected).indexOf(acc) ? 'bg-blue-50/50' : ''}`}>
+                        <div key={acc.id} className={`grid grid-cols-[auto_1fr_1fr_80px_80px_60px] items-center px-5 py-3.5 border-b border-slate-50 hoandr:bg-slate-50 transition-colors ${currentSenderIdx % Math.max(1, senderAccounts.filter(a=>a.isConnected).length) === senderAccounts.filter(a=>a.isConnected).indexOf(acc) ? 'bg-blue-50/50' : ''}`}>
                           <div className="w-7">
                             <div className={`w-5 h-5 rounded-full flex items-center justify-center text-[8px] font-black ${acc.isConnected ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 text-slate-400'}`}>{idx + 1}</div>
                           </div>
@@ -482,7 +482,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                             <span className="text-[13px] font-black text-blue-600">{acc.replyCount}</span>
                           </div>
                           <div className="flex justify-end">
-                            <button onClick={() => removeAccount(acc.id)} className="w-6 h-6 bg-red-50 hover:bg-red-500 text-red-400 hover:text-white rounded flex items-center justify-center transition-all text-xs">&times;</button>
+                            <button onClick={() => remoandAccount(acc.id)} className="w-6 h-6 bg-red-50 hoandr:bg-red-500 text-red-400 hoandr:text-white rounded flex items-center justify-center transition-all text-xs">&times;</button>
                           </div>
                         </div>
                       ))}
@@ -493,13 +493,13 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
             )}
 
             {/* STATS TAB */}
-            {activeTab === 'stats' && (
-              <div className="flex-1 overflow-y-auto p-6">
+            {actiandTab === 'stats' && (
+              <div className="flex-1 oandrflow-y-auto p-6">
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                   {[
                     { label: 'Toplam Gonderildi', value: sentCount, color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-100' },
                     { label: 'Toplam Yanit', value: totalReplies, color: 'text-blue-600', bg: 'bg-blue-50 border-blue-100' },
-                    { label: 'Aktif Hesap', value: senderAccounts.filter(a=>a.isConnected).length, color: 'text-violet-600', bg: 'bg-violet-50 border-violet-100' },
+                    { label: 'Actiand Hesap', value: senderAccounts.filter(a=>a.isConnected).length, color: 'text-violet-600', bg: 'bg-violet-50 border-violet-100' },
                     { label: 'Yanitlanma Orani', value: sentCount > 0 ? Math.round((totalReplies/sentCount)*100) + '%' : '0%', color: 'text-amber-600', bg: 'bg-amber-50 border-amber-100' },
                   ].map((s, i) => (
                     <div key={i} className={`rounded-2xl border p-5 ${s.bg}`}>
@@ -528,10 +528,10 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
             )}
 
             {/* REPLIES TAB */}
-            {activeTab === 'replies' && (
-              <div className="flex flex-col h-full overflow-hidden">
+            {actiandTab === 'replies' && (
+              <div className="flex flex-col h-full oandrflow-hidden">
                 <div className="px-5 py-3 border-b border-slate-100 bg-slate-50 shrink-0 flex items-center justify-between">
-                  <span className="text-[11px] font-black text-slate-700">{replyCount} firma yanit verdi</span>
+                  <span className="text-[11px] font-black text-slate-700">{replyCount} company yanit andrdi</span>
                   <span className="text-[10px] text-slate-400">Toplu: {totalReplies} yanit</span>
                 </div>
                 {repliedLogs.length === 0 ? (
@@ -539,12 +539,12 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                     <p className="text-[11px] font-black text-slate-400 uppercase">Henuz yanit yok</p>
                   </div>
                 ) : (
-                  <div className="flex-1 overflow-y-auto">
+                  <div className="flex-1 oandrflow-y-auto">
                     <div className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr] px-5 py-2.5 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                      <span>Firma</span><span>Gonderen Mail</span><span>Yanit Veren</span><span>Tarih</span><span>Aksiyon</span>
+                      <span>company</span><span>Gonderen Mail</span><span>Yanit Veren</span><span>Date</span><span>Aksiyon</span>
                     </div>
-                    {repliedLogs.slice().reverse().map((log, i) => (
-                      <div key={i} className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr] items-center px-5 py-3.5 border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                    {repliedLogs.slice().reandrse().map((log, i) => (
+                      <div key={i} className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr] items-center px-5 py-3.5 border-b border-slate-50 hoandr:bg-slate-50 transition-colors">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-lg bg-emerald-100 flex items-center justify-center text-[10px] font-black text-emerald-700 shrink-0 uppercase">{log.companyName.charAt(0)}</div>
                           <div className="min-w-0">
@@ -558,7 +558,7 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                           <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full">Yanit Verdi</span>
                         </div>
                         <span className="text-[9px] text-slate-400">{log.repliedAt ? new Date(log.repliedAt).toLocaleDateString('tr-TR') : '-'}</span>
-                        <button onClick={() => setCompose({ open: true, to: log.repliedByEmail || log.companyEmail, companyName: log.companyName, subject: 'Takip: ' + log.subject, body: '', mode: 'followup' })} className="text-[8px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full hover:bg-blue-100 transition-colors uppercase whitespace-nowrap">Takip Yaz</button>
+                        <button onClick={() => setCompose({ open: true, to: log.repliedByEmail || log.companyEmail, companyName: log.companyName, subject: 'Takip: ' + log.subject, body: '', mode: 'followup' })} className="text-[8px] font-black text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full hoandr:bg-blue-100 transition-colors uppercase whitespace-nowrap">Takip Yaz</button>
                       </div>
                     ))}
                   </div>
@@ -567,11 +567,11 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
             )}
 
             {/* LOG TAB */}
-            {activeTab === 'log' && (
-              <div className="flex flex-col h-full overflow-hidden">
+            {actiandTab === 'log' && (
+              <div className="flex flex-col h-full oandrflow-hidden">
                 <div className="flex items-center gap-2 px-5 py-3 border-b border-slate-100 shrink-0 bg-slate-50">
                   {(['all', 'sent', 'queued', 'failed'] as const).map(f => (
-                    <button key={f} onClick={() => setLogFilter(f)} className={`px-3 h-7 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${logFilter === f ? f === 'sent' ? 'bg-emerald-500 text-white' : f === 'queued' ? 'bg-amber-500 text-white' : f === 'failed' ? 'bg-red-500 text-white' : 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>
+                    <button key={f} onClick={() => setLogFilter(f)} className={`px-3 h-7 rounded-lg text-[9px] font-black uppercase tracking-widest transition-all ${logFilter === f ? f === 'sent' ? 'bg-emerald-500 text-white' : f === 'queued' ? 'bg-amber-500 text-white' : f === 'failed' ? 'bg-red-500 text-white' : 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-500 hoandr:bg-slate-200'}`}>
                       {f === 'all' ? `Hepsi (${emailLogs.length})` : f === 'sent' ? `Gonderildi (${sentCount})` : f === 'queued' ? `Sirada (${queuedCount})` : `Basarisiz (${failedCount})`}
                     </button>
                   ))}
@@ -579,12 +579,12 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
                 {filteredLogs.length === 0 ? (
                   <div className="flex-1 flex items-center justify-center opacity-40"><p className="text-[11px] font-black text-slate-400 uppercase">Kayit yok</p></div>
                 ) : (
-                  <div className="flex-1 overflow-y-auto">
+                  <div className="flex-1 oandrflow-y-auto">
                     <div className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr_80px] px-5 py-2.5 bg-slate-50 border-b border-slate-100 text-[9px] font-black uppercase tracking-widest text-slate-400">
-                      <span>Firma</span><span>Gonderen</span><span>Alici Email</span><span>Konu</span><span>Durum</span><span>Yanit</span>
+                      <span>company</span><span>Gonderen</span><span>Alici Email</span><span>Konu</span><span>Status</span><span>Yanit</span>
                     </div>
-                    {filteredLogs.slice().reverse().map((log, i) => (
-                      <div key={i} className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr_80px] items-center px-5 py-3 border-b border-slate-50 hover:bg-slate-50 transition-colors">
+                    {filteredLogs.slice().reandrse().map((log, i) => (
+                      <div key={i} className="grid grid-cols-[2fr_1.5fr_1.5fr_1.5fr_1fr_80px] items-center px-5 py-3 border-b border-slate-50 hoandr:bg-slate-50 transition-colors">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-6 h-6 rounded-lg bg-blue-100 flex items-center justify-center text-[9px] font-black text-blue-600 shrink-0">{log.companyName.charAt(0)}</div>
                           <span className="text-[11px] font-bold text-slate-800 truncate">{log.companyName}</span>
@@ -602,14 +602,14 @@ const GmailCenter: React.FC<Props> = ({ user, onClose, participants = [], update
             )}
 
             {/* INBOX TAB */}
-            {activeTab === 'inbox' && (
-              <div className="flex-1 overflow-y-auto">
+            {actiandTab === 'inbox' && (
+              <div className="flex-1 oandrflow-y-auto">
                 {senderAccounts.filter(a => a.isConnected).length === 0 ? (
                   <div className="h-full flex flex-col items-center justify-center gap-4 p-10 text-center">
                     <div className="w-16 h-16 bg-gradient-to-br from-red-400 to-red-600 rounded-3xl flex items-center justify-center text-2xl font-black text-white">M</div>
                     <h3 className="text-base font-black text-slate-700">Gmail Hesabi Baglanmadi</h3>
-                    <p className="text-[12px] text-slate-400 max-w-xs">"Gmail Hesaplari" sekmesinden Gmail hesabinizi ekleyin.</p>
-                    <button onClick={() => setActiveTab('accounts')} className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-wider">Hesap Ekle</button>
+                    <p className="text-[12px] text-slate-400 max-w-xs">"Gmail Hesaplari" sekmesinden Gmail hesabinizi addyin.</p>
+                    <button onClick={() => setActiandTab('accounts')} className="px-6 py-2.5 bg-blue-600 text-white rounded-xl text-[10px] font-black uppercase tracking-wider">Hesap Add</button>
                   </div>
                 ) : (
                   <div className="h-full flex flex-col items-center justify-center gap-3 text-center p-10">

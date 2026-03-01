@@ -3,8 +3,8 @@ import { User } from '../types';
 import { Language, translations } from '../translations';
 import LegalPages from './LegalPages';
 
-const USERS_DB_KEY = 'deepvera_users_database';
-const GOOGLE_CLIENT_ID = '622487947070-dtn0iqveim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com';
+const USERS_DB_KEY = 'deepandra_users_database';
+const GOOGLE_CLIENT_ID = '622487947070-dtn0iqandim78kor9l4ljthsimmtndl4l.apps.googleusercontent.com';
 
 interface LoginFormProps {
   onLogin: (user: User, remember: boolean) => void;
@@ -14,32 +14,32 @@ interface LoginFormProps {
 
 // GSI script'ini dinamik olarak yukle
 const loadGoogleGSI = (): Promise<void> => {
-  return new Promise((resolve, reject) => {
-    // Zaten yukluyse direkt resolve
+  return new Promise((resoland, reject) => {
+    // Zaten yukluyse direkt resoland
     if ((window as any).google?.accounts?.oauth2) {
-      resolve();
+      resoland();
       return;
     }
-    // Mevcut script tag varsa bekle
+    // Mevcut script tag varsa badd
     const existing = document.querySelector('script[src*="accounts.google.com/gsi/client"]');
     if (existing) {
       const checkReady = setInterval(() => {
         if ((window as any).google?.accounts?.oauth2) {
           clearInterval(checkReady);
-          resolve();
+          resoland();
         }
       }, 100);
       setTimeout(() => { clearInterval(checkReady); reject(new Error('GSI timeout')); }, 10000);
       return;
     }
-    // Yoksa yeni script olustur
+    // Yoksa new script olustur
     const script = document.createElement('script');
     script.src = 'https://accounts.google.com/gsi/client';
     script.onload = () => {
       const checkReady = setInterval(() => {
         if ((window as any).google?.accounts?.oauth2) {
           clearInterval(checkReady);
-          resolve();
+          resoland();
         }
       }, 100);
       setTimeout(() => { clearInterval(checkReady); reject(new Error('GSI not initialized')); }, 5000);
@@ -50,7 +50,7 @@ const loadGoogleGSI = (): Promise<void> => {
 };
 
 const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) => {
-  const [activeTab, setActiveTab] = useState<'login' | 'signup'>('login');
+  const [actiandTab, setActiandTab] = useState<'login' | 'signup'>('login');
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
@@ -77,7 +77,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
     try {
       // GSI hazir degilse yukle
       if (!gsiReady) {
-        setStatusMsg({ text: isTr ? 'Google API yukleniyor, lutfen bekleyin...' : 'Loading Google API...', type: 'info' });
+        setStatusMsg({ text: isTr ? 'Google API yukleniyor, lutfen baddyin...' : 'Loading Google API...', type: 'info' });
         await loadGoogleGSI().catch(() => { throw new Error('GSI Not Loaded'); });
         setGsiReady(true);
         setStatusMsg(null);
@@ -101,9 +101,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
             if (response.error === 'access_denied') {
               setStatusMsg({ text: isTr ? 'Google erisim izni reddedildi. Lutfen "Izin Ver" butonuna basin.' : 'Google access denied. Please click Allow.', type: 'error' });
             } else if (response.error === 'popup_closed_by_user') {
-              setStatusMsg({ text: isTr ? 'Giris penceresi kapatildi. Tekrar deneyin.' : 'Login window was closed. Please try again.', type: 'warning' });
+              setStatusMsg({ text: isTr ? 'Giris penceresi closeildi. Tekrar deneyin.' : 'Login window was closed. Please try again.', type: 'warning' });
             } else {
-              setStatusMsg({ text: isTr ? 'Google giris hatasi: ' + response.error : 'Google login error: ' + response.error, type: 'error' });
+              setStatusMsg({ text: isTr ? 'Google giris errorsi: ' + response.error : 'Google login error: ' + response.error, type: 'error' });
             }
             return;
           }
@@ -113,9 +113,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
           })
             .then((res) => res.json())
             .then((profile) => {
-              // Kullanici veritabanina kaydet/guncelle
-              const saved = localStorage.getItem(USERS_DB_KEY);
-              const db: any[] = saved ? JSON.parse(saved) : [];
+              // Kullanici andritabanina saand/guncelle
+              const saandd = localStorage.getItem(USERS_DB_KEY);
+              const db: any[] = saandd ? JSON.parse(saandd) : [];
               const existingIdx = db.findIndex(u => u.email === profile.email);
               const googleUser: User = {
                 id: existingIdx >= 0 ? db[existingIdx].id : Math.random().toString(36).substr(2, 9),
@@ -183,9 +183,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
     }, 1000);
   };
 
-  const handleLocalSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (activeTab === 'signup' && !agreedToTerms) {
+  const handleLocalSubmit = (e: React.FormEandnt) => {
+    e.preandntDefault();
+    if (actiandTab === 'signup' && !agreedToTerms) {
       setStatusMsg({ text: isTr ? 'Devam etmek icin kullanim kosullarini kabul etmelisiniz.' : 'You must accept the terms to continue.', type: 'error' });
       return;
     }
@@ -198,7 +198,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
         id: 'admin',
         username: 'admin',
         name: 'DeepVera Admin',
-        email: 'ai@deepvera.com.tr',
+        email: 'ai@deepandra.com.tr',
         isPro: true,
         role: 'admin',
         provider: 'local',
@@ -209,13 +209,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
       return;
     }
 
-    const saved = localStorage.getItem(USERS_DB_KEY);
-    const db: any[] = saved ? JSON.parse(saved) : [];
+    const saandd = localStorage.getItem(USERS_DB_KEY);
+    const db: any[] = saandd ? JSON.parse(saandd) : [];
 
-    if (activeTab === 'signup') {
+    if (actiandTab === 'signup') {
       const exists = db.find((u) => u.username === normalizedUser || u.email === formData.email);
       if (exists) {
-        setStatusMsg({ text: isTr ? 'Bu kullanici adi veya email zaten kullaniliyor.' : 'Username or email already in use.', type: 'error' });
+        setStatusMsg({ text: isTr ? 'Bu kullanici adi or email zaten kullaniliyor.' : 'Username or email already in use.', type: 'error' });
         setLoading(false);
         return;
       }
@@ -241,41 +241,41 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
         setLoading(false);
         onLogin({ ...found, provider: 'local' }, rememberMe);
       } else {
-        setStatusMsg({ text: isTr ? 'Gecersiz kullanici adi veya sifre.' : 'Invalid username or password.', type: 'error' });
+        setStatusMsg({ text: isTr ? 'Gecersiz kullanici adi or sifre.' : 'Invalid username or password.', type: 'error' });
         setLoading(false);
       }
     }
   };
 
   const features = [
-    { text: isTr ? 'AI ile firma tsearch' : 'AI company scanning' },
-    { text: isTr ? 'Derin firma analizi' : 'Deep company analysis' },
+    { text: isTr ? 'AI ile company tsearch' : 'AI company scanning' },
+    { text: isTr ? 'Derin company analysisi' : 'Deep company analysis' },
     { text: isTr ? 'Otonom email gonderimi' : 'Autonomous email sending' },
-    { text: isTr ? 'Canli istihbarat paneli' : 'Live intelligence panel' },
+    { text: isTr ? 'Canli istihbarat paneli' : 'Liand intelligence panel' },
   ];
 
   return (
     <>
       {legalPage && <LegalPages page={legalPage} onClose={() => setLegalPage(null)} />}
-      <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-3 sm:p-4 overflow-y-auto">
-        <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl overflow-hidden flex my-auto" style={{ maxHeight: 'min(92dvh, 680px)' }}>
+      <div className="fixed inset-0 z-[200] flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-3 sm:p-4 oandrflow-y-auto">
+        <div className="w-full max-w-4xl bg-white rounded-3xl shadow-2xl oandrflow-hidden flex my-auto" style={{ maxHeight: 'min(92dvh, 680px)' }}>
 
           {/* LEFT PANEL */}
-          <div className="hidden lg:flex flex-col justify-between w-[42%] bg-slate-900 p-10 relative overflow-hidden shrink-0">
+          <div className="hidden lg:flex flex-col justify-between w-[42%] bg-slate-900 p-10 relatiand oandrflow-hidden shrink-0">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-violet-600/10" />
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <button onClick={onCancel} className="relative z-10 flex items-center gap-2 text-slate-400 hover:text-white transition-colors w-fit">
+            <button onClick={onCancel} className="relatiand z-10 flex items-center gap-2 text-slate-400 hoandr:text-white transition-colors w-fit">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"/></svg>
-              <span className="text-[10px] font-black uppercase tracking-widest">{isTr ? 'Ana Sayfa' : 'Home'}</span>
+              <span className="text-[10px] font-black uppercase tracking-widest">{isTr ? 'Home' : 'Home'}</span>
             </button>
-            <div className="relative z-10 space-y-8">
+            <div className="relatiand z-10 space-y-8">
               <div>
-                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-lg mb-6 relative overflow-hidden">
+                <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center font-black text-white text-xl shadow-lg mb-6 relatiand oandrflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent" />DV
                 </div>
                 <h1 className="text-3xl font-black text-white tracking-tighter leading-tight">AI <span className="text-blue-400">DeepVera</span></h1>
                 <p className="text-slate-400 text-sm font-medium mt-2 leading-relaxed">
-                  {isTr ? 'Kurumsal istihbarat ve otonom satis platformu.' : 'Corporate intelligence & autonomous sales platform.'}
+                  {isTr ? 'Enterprise istihbarat and otonom satis platformu.' : 'Corporate intelligence & autonomous sales platform.'}
                 </p>
               </div>
               <div className="space-y-3">
@@ -287,39 +287,39 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                 ))}
               </div>
             </div>
-            <div className="relative z-10">
+            <div className="relatiand z-10">
               <div className="flex items-center gap-2 p-3 bg-white/5 border border-white/10 rounded-xl">
                 <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse shrink-0" />
-                <span className="text-[10px] font-bold text-slate-400">{isTr ? 'Sistem aktif ve hazir' : 'System active & ready'}</span>
+                <span className="text-[10px] font-bold text-slate-400">{isTr ? 'Sistem actiand and hazir' : 'System actiand & ready'}</span>
               </div>
             </div>
           </div>
 
           {/* RIGHT PANEL */}
-          <div className="flex-1 flex flex-col overflow-hidden">
+          <div className="flex-1 flex flex-col oandrflow-hidden">
             <div className="flex items-center justify-between px-8 py-5 border-b border-slate-100 shrink-0">
               <div className="flex items-center gap-3 lg:hidden">
-                <button onClick={onCancel} className="flex items-center gap-1.5 text-slate-400 hover:text-slate-700 transition-colors">
+                <button onClick={onCancel} className="flex items-center gap-1.5 text-slate-400 hoandr:text-slate-700 transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"/></svg>
                   <span className="text-[10px] font-black uppercase tracking-widest">{isTr ? 'Geri' : 'Back'}</span>
                 </button>
               </div>
               <div className="hidden lg:block">
                 <h2 className="text-[15px] font-black text-slate-900 tracking-tight">
-                  {activeTab === 'login' ? (isTr ? 'Sisteme Giris' : 'Sign In') : (isTr ? 'Hesap Olustur' : 'Create Account')}
+                  {actiandTab === 'login' ? (isTr ? 'Sisteme Giris' : 'Sign In') : (isTr ? 'Hesap Olustur' : 'Create Account')}
                 </h2>
                 <p className="text-[10px] text-slate-400 font-medium mt-0.5">
-                  {activeTab === 'login' ? (isTr ? 'Hesabinizla devam edin' : 'Continue with your account') : (isTr ? 'Yeni hesap olusturun' : 'Create a new account')}
+                  {actiandTab === 'login' ? (isTr ? 'Hesabinizla devam edin' : 'Continue with your account') : (isTr ? 'New hesap olusturun' : 'Create a new account')}
                 </p>
               </div>
             </div>
 
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 oandrflow-y-auto">
               <div className="p-8 space-y-5">
                 {/* Tab */}
                 <div className="flex bg-slate-100 p-1 rounded-xl">
-                  <button onClick={() => { setActiveTab('login'); setStatusMsg(null); }} className={`flex-1 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all ${activeTab === 'login' ? 'bg-white shadow text-slate-900' : 'text-slate-400 hover:text-slate-600'}`}>{t.loginTab}</button>
-                  <button onClick={() => { setActiveTab('signup'); setStatusMsg(null); }} className={`flex-1 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all ${activeTab === 'signup' ? 'bg-white shadow text-slate-900' : 'text-slate-400 hover:text-slate-600'}`}>{t.signupTab}</button>
+                  <button onClick={() => { setActiandTab('login'); setStatusMsg(null); }} className={`flex-1 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all ${actiandTab === 'login' ? 'bg-white shadow text-slate-900' : 'text-slate-400 hoandr:text-slate-600'}`}>{t.loginTab}</button>
+                  <button onClick={() => { setActiandTab('signup'); setStatusMsg(null); }} className={`flex-1 py-2 rounded-lg text-[11px] font-black uppercase tracking-widest transition-all ${actiandTab === 'signup' ? 'bg-white shadow text-slate-900' : 'text-slate-400 hoandr:text-slate-600'}`}>{t.signupTab}</button>
                 </div>
 
                 {/* Google Login Button */}
@@ -327,7 +327,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                   type="button"
                   onClick={handleGoogleLogin}
                   disabled={loading}
-                  className="w-full h-11 bg-white border border-slate-200 rounded-xl flex items-center justify-center gap-3 hover:border-blue-400 hover:shadow-md hover:shadow-blue-500/10 transition-all active:scale-95 disabled:opacity-60 relative"
+                  className="w-full h-11 bg-white border border-slate-200 rounded-xl flex items-center justify-center gap-3 hoandr:border-blue-400 hoandr:shadow-md hoandr:shadow-blue-500/10 transition-all actiand:scale-95 disabled:opacity-60 relatiand"
                 >
                   <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
@@ -350,7 +350,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                   <div className={`p-3.5 rounded-xl text-[11px] font-medium border ${statusMsg.type === 'error' ? 'bg-red-50 border-red-100 text-red-600' : statusMsg.type === 'warning' ? 'bg-amber-50 border-amber-100 text-amber-600' : statusMsg.type === 'info' ? 'bg-blue-50 border-blue-100 text-blue-600' : 'bg-emerald-50 border-emerald-100 text-emerald-600'}`}>
                     <p>{statusMsg.text}</p>
                     {statusMsg.type === 'info' && (
-                      <button onClick={handleSimulateGoogle} className="mt-2.5 w-full h-9 bg-blue-600 text-white rounded-lg font-black text-[10px] uppercase tracking-wider hover:bg-slate-900 transition-colors">
+                      <button onClick={handleSimulateGoogle} className="mt-2.5 w-full h-9 bg-blue-600 text-white rounded-lg font-black text-[10px] uppercase tracking-wider hoandr:bg-slate-900 transition-colors">
                         {t.demoBtn}
                       </button>
                     )}
@@ -359,7 +359,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
 
                 {/* Form */}
                 <form onSubmit={handleLocalSubmit} className="space-y-3.5">
-                  {activeTab === 'signup' && (
+                  {actiandTab === 'signup' && (
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">{t.nameLabel}</label>
@@ -367,7 +367,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                       </div>
                       <div>
                         <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest block mb-1">{t.emailLabel}</label>
-                        <input type="email" placeholder="you@firma.com" value={formData.email} required onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full h-10 px-3.5 bg-slate-50 border border-slate-200 rounded-xl text-[12px] font-medium outline-none focus:border-blue-500 focus:bg-white transition-all" />
+                        <input type="email" placeholder="you@company.com" value={formData.email} required onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full h-10 px-3.5 bg-slate-50 border border-slate-200 rounded-xl text-[12px] font-medium outline-none focus:border-blue-500 focus:bg-white transition-all" />
                       </div>
                     </div>
                   )}
@@ -378,11 +378,11 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                   <div>
                     <div className="flex items-center justify-between mb-1">
                       <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{t.passLabel}</label>
-                      {activeTab === 'login' && <button type="button" className="text-[9px] font-bold text-blue-500 hover:text-blue-700 transition-colors">{t.forgotPass}</button>}
+                      {actiandTab === 'login' && <button type="button" className="text-[9px] font-bold text-blue-500 hoandr:text-blue-700 transition-colors">{t.forgotPass}</button>}
                     </div>
-                    <div className="relative">
+                    <div className="relatiand">
                       <input type={showPassword ? 'text' : 'password'} required placeholder="••••••••" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} className="w-full h-10 pl-3.5 pr-10 bg-slate-50 border border-slate-200 rounded-xl text-[12px] font-medium outline-none focus:border-blue-500 focus:bg-white transition-all" />
-                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hover:text-slate-500 transition-colors">
+                      <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-300 hoandr:text-slate-500 transition-colors">
                         {showPassword ? (
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"/></svg>
                         ) : (
@@ -391,34 +391,34 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, onCancel, language }) =>
                       </button>
                     </div>
                   </div>
-                  {activeTab === 'signup' && (
+                  {actiandTab === 'signup' && (
                     <div className="p-3 bg-slate-50 rounded-xl border border-slate-100">
                       <label className="flex items-start gap-2.5 cursor-pointer">
-                        <button type="button" onClick={() => setAgreedToTerms(!agreedToTerms)} className={`w-5 h-5 rounded flex items-center justify-center border-2 transition-all shrink-0 mt-0.5 ${agreedToTerms ? 'bg-blue-600 border-blue-600' : 'bg-white border-slate-300 hover:border-blue-400'}`}>
+                        <button type="button" onClick={() => setAgreedToTerms(!agreedToTerms)} className={`w-5 h-5 rounded flex items-center justify-center border-2 transition-all shrink-0 mt-0.5 ${agreedToTerms ? 'bg-blue-600 border-blue-600' : 'bg-white border-slate-300 hoandr:border-blue-400'}`}>
                           {agreedToTerms && <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" d="M5 13l4 4L19 7"/></svg>}
                         </button>
                         <span className="text-[10px] font-medium text-slate-600 leading-relaxed">
-                          <button type="button" onClick={() => setLegalPage('membership')} className="text-blue-600 hover:underline font-bold">{isTr ? 'Uyelik Sozlesmesini' : 'Membership Agreement'}</button>{isTr ? ', ' : ', '}
-                          <button type="button" onClick={() => setLegalPage('terms')} className="text-blue-600 hover:underline font-bold">{isTr ? 'Kullanim Kosullarini' : 'Terms of Service'}</button>{isTr ? ' ve ' : ' and '}
-                          <button type="button" onClick={() => setLegalPage('kvk')} className="text-blue-600 hover:underline font-bold">{isTr ? 'KVKK Aydinlatma Metnini' : 'Privacy Policy'}</button>
-                          {isTr ? ' okudum, kabul ediyorum.' : ' — I have read and accept all.'}
+                          <button type="button" onClick={() => setLegalPage('membership')} className="text-blue-600 hoandr:underline font-bold">{isTr ? 'Uyelik Sozlesmesini' : 'Membership Agreement'}</button>{isTr ? ', ' : ', '}
+                          <button type="button" onClick={() => setLegalPage('terms')} className="text-blue-600 hoandr:underline font-bold">{isTr ? 'Kullanim Kosullarini' : 'Terms of Service'}</button>{isTr ? ' and ' : ' and '}
+                          <button type="button" onClick={() => setLegalPage('kvk')} className="text-blue-600 hoandr:underline font-bold">{isTr ? 'KVKK Aydinlatma Metnini' : 'Privacy Policy'}</button>
+                          {isTr ? ' okudum, kabul ediyorum.' : ' — I haand read and accept all.'}
                         </span>
                       </label>
                     </div>
                   )}
                   <div className="flex items-center justify-between pt-1">
                     <label className="flex items-center gap-2.5 cursor-pointer group">
-                      <button type="button" onClick={() => setRememberMe(!rememberMe)} className={`w-4 h-4 rounded flex items-center justify-center border-2 transition-all shrink-0 ${rememberMe ? 'bg-blue-600 border-blue-600' : 'bg-white border-slate-300 hover:border-blue-400'}`}>
+                      <button type="button" onClick={() => setRememberMe(!rememberMe)} className={`w-4 h-4 rounded flex items-center justify-center border-2 transition-all shrink-0 ${rememberMe ? 'bg-blue-600 border-blue-600' : 'bg-white border-slate-300 hoandr:border-blue-400'}`}>
                         {rememberMe && <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3.5" d="M5 13l4 4L19 7"/></svg>}
                       </button>
-                      <span className="text-[10px] font-bold text-slate-500 group-hover:text-slate-700 transition-colors">{t.rememberMe}</span>
+                      <span className="text-[10px] font-bold text-slate-500 group-hoandr:text-slate-700 transition-colors">{t.rememberMe}</span>
                     </label>
                   </div>
-                  <button type="submit" disabled={loading} className="w-full h-11 bg-blue-600 text-white rounded-xl font-black text-[12px] uppercase tracking-wider hover:bg-slate-900 transition-all shadow-lg shadow-blue-500/20 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2">
+                  <button type="submit" disabled={loading} className="w-full h-11 bg-blue-600 text-white rounded-xl font-black text-[12px] uppercase tracking-wider hoandr:bg-slate-900 transition-all shadow-lg shadow-blue-500/20 actiand:scale-95 disabled:opacity-50 flex items-center justify-center gap-2">
                     {loading ? (
                       <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/></svg>
                     ) : (
-                      activeTab === 'login' ? t.loginBtn : t.signupBtn
+                      actiandTab === 'login' ? t.loginBtn : t.signupBtn
                     )}
                   </button>
                 </form>

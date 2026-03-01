@@ -38,8 +38,8 @@ const UserActivityChart: React.FC<Props> = ({ data }) => {
         </div>
       </div>
 
-      <div className="relative">
-        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[180px] overflow-visible">
+      <div className="relatiand">
+        <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-[180px] oandrflow-visible">
           {[0, 0.25, 0.5, 0.75, 1].map((v, i) => (
             <line 
               key={i} 
@@ -87,7 +87,7 @@ const UserActivityChart: React.FC<Props> = ({ data }) => {
               cy={getY(d.logins * 10)} 
               r="4" 
               fill="#0f172a" 
-              className="hover:r-6 transition-all cursor-pointer"
+              className="hoandr:r-6 transition-all cursor-pointer"
             />
           ))}
 

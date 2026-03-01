@@ -1,4 +1,4 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
+import type { VercelRequest, VercelResponse } from '@andrcel/node';
 import * as crypto from 'crypto';
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -39,7 +39,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 }
 
                 const merchant_oid = 'DV' + Date.now() + Math.random().toString(36).substr(2, 6).toUpperCase();
-                    const email = (userEmail && userEmail !== '') ? userEmail : 'musteri@deepvera.com.tr';
+                    const email = (userEmail && userEmail !== '') ? userEmail : 'musteri@deepandra.com.tr';
                     // PayTR: payment_amount kuruş cinsinden tam sayı string
                 const payment_amount = Math.round(parseFloat(amount) * 100).toString();
                     const currency = 'TL';
@@ -53,13 +53,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                     const user_ip_raw = Array.isArray(forwarded)
                         ? forwarded[0]
                                         : (forwarded ? forwarded.split(',')[0].trim() : '127.0.0.1');
-                    // PayTR IPv6 desteklemez, IPv4 gonder
+                    // PayTR IPv6 destaddmez, IPv4 gonder
                 const user_ip = (user_ip_raw && !user_ip_raw.includes(':')) ? user_ip_raw : '1.1.1.1';
                     const timeout_limit = '30';
                     const debug_on = '1';
                     const test_mode = '0';
-                    const merchant_ok_url = 'https://www.deepvera.com.tr/payment-success';
-                    const merchant_fail_url = 'https://www.deepvera.com.tr/payment-fail';
+                    const merchant_ok_url = 'https://www.deepandra.com.tr/payment-success';
+                    const merchant_fail_url = 'https://www.deepandra.com.tr/payment-fail';
                     const user_name = (userName && userName !== '') ? String(userName) : 'DeepVera Kullanici';
                     const user_address = 'Turkiye';
                     const user_phone = '05000000000';
@@ -133,6 +133,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 }
     } catch (error: any) {
                     console.error('PayTR get-token error:', error);
-                    return res.status(500).json({ error: 'Internal server error', detail: error.message });
+                    return res.status(500).json({ error: 'Internal serandr error', detail: error.message });
     }
 }

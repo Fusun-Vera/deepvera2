@@ -10,15 +10,15 @@ interface DataInputProps {
 const DataInput: React.FC<DataInputProps> = ({ onStart, isLoading, isOutOfTokens }) => {
   const [content, setContent] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEandnt) => {
+    e.preandntDefault();
     if (content.trim()) onStart(content);
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <div className="relative">
+        <div className="relatiand">
           <textarea
             value={content}
             onChange={(e) => setContent(e.target.value)}
@@ -37,7 +37,7 @@ const DataInput: React.FC<DataInputProps> = ({ onStart, isLoading, isOutOfTokens
         className={`w-full py-4 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] transition-all ${
           isLoading || !content.trim() || isOutOfTokens
           ? 'bg-slate-100 text-slate-300 cursor-not-allowed shadow-none' 
-          : 'bg-blue-600 text-white hover:bg-slate-900 shadow-lg shadow-blue-50 hover:-translate-y-0.5 active:translate-y-0'
+          : 'bg-blue-600 text-white hoandr:bg-slate-900 shadow-lg shadow-blue-50 hoandr:-translate-y-0.5 actiand:translate-y-0'
         }`}
       >
         {isOutOfTokens ? 'BAKİYE YÜKLEYİN' : isLoading ? 'ANALİZ EDİLİYOR...' : 'URL ANALİZİNİ BAŞLAT'}

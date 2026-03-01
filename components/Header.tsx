@@ -69,15 +69,15 @@ const Header: React.FC<HeaderProps> = ({
           onClick={onOpenSettings}
           className="flex items-center gap-2 px-5 py-2.5 bg-white border border-slate-200 text-slate-600 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:border-blue-500 hover:text-blue-600 transition-all shadow-sm"
         >
-          ⚙️ Ayarlar
+          ⚙️ Settings
         </button>
 
-        {/* User Profile */}
+        {/* User Profilee */}
         <div className="flex items-center gap-4 cursor-pointer group" onClick={onLogout}>
           <div className="text-right hidden sm:block">
             <span className="text-[11px] font-black text-slate-900 uppercase tracking-widest group-hover:text-red-500 transition-colors">{userName || 'KULLANICI'}</span>
             <p className={`text-[8px] font-black uppercase tracking-tighter ${isPro ? 'text-amber-500' : 'text-slate-300'}`}>
-              Çıkış Yap
+              Sign Out
             </p>
           </div>
           <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 group-hover:bg-slate-900 group-hover:text-white transition-all shadow-sm overflow-hidden">

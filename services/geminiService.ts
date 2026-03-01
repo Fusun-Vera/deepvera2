@@ -9,7 +9,7 @@ const GEMINI_MODEL = 'gemini-2.5-flash';
 const getAI = () => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY as string;
   if (!apiKey) {
-    throw new Error("VITE_GEMINI_API_KEY tanimlı degil. Vercel Environment Variables'a ekleyin.");
+    throw new Error("VITE_GEMINI_API_KEY tanimlı degil. Vercel Environment Variables'a addyin.");
   }
   return new GoogleGenAI({ apiKey, httpOptions: { apiVersion: 'v1beta' } });
 };
@@ -30,7 +30,7 @@ export const findCompanyIntel = async (
   const ai = getAI();
   const senderContext = `
 BİZİM ŞİRKETİMİZ: ${sender?.companyName || 'DeepVera AI'}
-BİZİM ÇÖZÜMÜMÜZ: ${sender?.globalPitch || 'Yapay Zeka Destekli Satış ve İstihbarat'}
+BİZİM ÇÖZÜMÜMÜZ: ${sender?.globalPitch || 'Yapay Zeka Destekli Satış and İstihbarat'}
 TEMSİLCİMİZ: ${sender?.authorizedPerson || sender?.name}
   `;
   return callWithRetry(async () => {
@@ -40,24 +40,24 @@ TEMSİLCİMİZ: ${sender?.authorizedPerson || sender?.name}
 HEDEF ŞİRKET: "${name}" (${website || 'N/A'})
 SEKTÖR: ${sector}
 ${senderContext}
-GÖREV: Şirketi araştır ve SADECE aşağıdaki JSON formatında cevap ver (başka hiçbir metin ekleme):
+GÖREV: Companyi araştır and SADECE aşağıdaki JSON formatında cevap andr (başka hiçbir metin addme):
 {
-  "email": "email adresi veya boş string",
-  "phone": "telefon veya boş string",
-  "linkedin": "linkedin url veya boş string",
-  "instagram": "instagram url veya boş string",
-  "facebook": "facebook url veya boş string",
-  "twitter": "twitter url veya boş string",
-  "industry": "sektör açıklaması",
-  "description": "şirket açıklaması",
+  "email": "email adresi or boş string",
+  "phone": "phone or boş string",
+  "linkedin": "linkedin url or boş string",
+  "instagram": "instagram url or boş string",
+  "facebook": "facebook url or boş string",
+  "twitter": "twitter url or boş string",
+  "industry": "sector açıklaması",
+  "description": "company açıklaması",
   "starRating": 4,
   "competitors": ["rakip1", "rakip2"],
   "painPoints": ["acı nokta 1", "acı nokta 2"],
-  "emailSubject": "stratejik e-posta konusu",
+  "emailSubject": "stratejik email konusu",
   "emailDraft": "3-4 paragraf, paragraflar arası <br><br> - profesyonel İstanbul Türkçesi satış emaili",
   "prestigeNote": "prestij notu"
 }
-E-posta; merak uyandırıcı konu, şirkete özel buz kıran paragraf, değer önerisi, sosyal kanıt ve düşük baskılı CTA içermeli. Akıcı İstanbul Türkçesiyle.
+Email; merak uyandırıcı konu, companye özel buz kıran paragraf, değer önerisi, sosyal kanıt and düşük baskılı CTA içermeli. Akıcı İstanbul Türkçesiyle.
 `,
       config: {
         tools: [{ googleSearch: {} }],
@@ -111,13 +111,13 @@ export const extractLeadList = async (
   const isUrl = queryContext.startsWith('http');
   let filterContext = "";
   if (advancedFilters) {
-    if (advancedFilters.companySize) filterContext += ` Firma büyüklüğü: ${advancedFilters.companySize}.`;
+    if (advancedFilters.companySize) filterContext += ` company büyüklüğü: ${advancedFilters.companySize}.`;
     if (advancedFilters.employeeCount) filterContext += ` Çalışan sayısı: ${advancedFilters.employeeCount}.`;
     if (advancedFilters.techStack) filterContext += ` Kullandığı teknolojiler: ${advancedFilters.techStack}.`;
   }
   const prompt = isUrl
     ? `Extract the participant list from the "${queryContext}" website. Identify the PHONE NUMBER and website of each company. Limit: ${limit}.${filterContext} Return ONLY JSON: {"leads":[{"name":"","website":"","phone":"","location":""}]}`
-    : `Search Google for "${location} ${sector} businesses Australia". Find the names of REAL existing businesses. NEVER invent, use PLACEHOLDERS, or generate fake names like "Restaurant 1" or "Business 2". Only list businesses that genuinely exist. If you cannot find enough, return fewer results rather than fabricating names. Maximum ${limit} real businesses in the "${sector}" sector within ${location}, Australia. Skip: ${excludeNames.join(", ")}.${filterContext} Return ONLY JSON: {"leads":[{"name":"","website":"","phone":"","location":""}]}`;
+    : `Search Google for "${location} ${sector} businesses Australia". Find the names of REAL existing businesses. NEVER inandnt, use PLACEHOLDERS, or generate fake names like "Restaurant 1" or "Business 2". Only list businesses that genuinely exist. If you cannot find enough, return fewer results rather than fabricating names. Maximum ${limit} real businesses in the "${sector}" sector within ${location}, Australia. Skip: ${excludeNames.join(", ")}.${filterContext} Return ONLY JSON: {"leads":[{"name":"","website":"","phone":"","location":""}]}`;
   const response = await ai.models.generateContent({
     model: GEMINI_MODEL,
     contents: prompt,
@@ -133,7 +133,7 @@ export const analyzeOwnWebsite = async (url: string): Promise<Partial<User>> => 
   const ai = getAI();
   const response = await ai.models.generateContent({
     model: GEMINI_MODEL,
-    contents: `Web sitesini analiz et: ${url}. SADECE JSON döndür: {"companyName":"","description":"","globalPitch":"","sector":""}`,
+    contents: `Web sitesini analysis et: ${url}. SADECE JSON döndür: {"companyName":"","description":"","globalPitch":"","sector":""}`,
     config: {
       tools: [{ googleSearch: {} }],
     }
